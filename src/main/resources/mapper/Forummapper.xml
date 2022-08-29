@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.project.dao.ForumDao">
+    <select id="findAll" resultType="com.example.project.entity.Forum">
+        select *
+        from notice;
+    </select>
+    <insert id="add" parameterType="com.example.project.entity.Forum">
+        insert forum
+        values (#{id}, #{builder}, #{sendTime},#{message}, #{title});
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete
+        from forum
+        where id = #{id};
+    </delete>
+    <select id="findUserById" resultType="com.example.project.entity.Forum">
+        select *
+        from forum
+        where id = #{id};
+    </select>
+    <update id="update" parameterType="com.example.project.entity.Forum">
+        update forum
+        set builder=#{builder}, sendTime=#{sendTime},message=#{message}, title=#{title}
+        where id = #{id}
+    </update>
+</mapper>

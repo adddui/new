@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.project.dao.NoticeDao">
+    <select id="findAll" resultType="com.example.project.entity.Notice">
+        select *
+        from notice;
+    </select>
+    <insert id="add" parameterType="com.example.project.entity.Notice">
+        insert notice
+        values (#{id}, #{context}, #{postTime}, #{title});
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete
+        from notice
+        where id = #{id};
+    </delete>
+    <select id="findUserById" resultType="com.example.project.entity.Notice">
+        select *
+        from notice
+        where id = #{id};
+    </select>
+    <update id="update" parameterType="com.example.project.entity.Notice">
+        update notice
+        set context= #{context},
+            postTime=#{postTime},
+            title=#{title}
+        where id = #{id}
+    </update>
+</mapper>
