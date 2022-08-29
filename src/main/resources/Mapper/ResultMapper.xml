@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.project.dao.Out_messDao">
+ <!--
+    namespace：对应的dao接口的全路径
+    id：接口中的方法名
+    parameterType：输入参数的类型
+    resultType：查询返回的类型
+ -->
+    <select id="findAll" resultType="com.example.project.entity.Result">
+        select * from result;
+    </select>
+
+    <insert id="add" parameterType="com.example.project.entity.Result">
+        insert into result(id,uid, resultStatus, sampleTime, oid, checkTime)
+        values (#{id},
+                #{uid},
+                #{resultStatus},
+                #{sampleTime},
+                #{oid},
+                #{checkTime});
+    </insert>
+
+    <delete id="delete">
+          delete from result where id =#{id};
+    </delete>
+    <update id="update" parameterType="com.example.project.Result">
+        update result set uid=#{uid},resultStatus=#{resultStatus},sampleTime=#{sampleTime},oid=#{oid},checkTime=#{checkTime}
+        where id=#{id};
+    </update>
+    
+    <select id="findById"  resultType="com.example.project.entity.Result">
+        select * from result where id =#{id};
+    </select>
+    
+</mapper>
