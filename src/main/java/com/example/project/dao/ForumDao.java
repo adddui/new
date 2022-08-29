@@ -1,7 +1,6 @@
 package com.example.project.dao;
 
 import com.example.project.entity.Forum;
-import com.example.project.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,14 +8,14 @@ import java.util.List;
 public interface ForumDao {
     /**
      *
-     * @return
+     * @return Forum
      */
     List<Forum> findAll();
 
     /**
      *
      * @param forum
-     * @return
+     * @return int
      */
     //新增数据
     int add(Forum forum);
@@ -24,23 +23,23 @@ public interface ForumDao {
     /**
      *
      * @param id
-     * @return
+     * @return int
      */
     //删除数据
-    Integer delete(int id);
+    int delete(int id);
 
     /**
      *
      * @param id
-     * @return
+     * @return Forum
      */
     //根据id查找
-    Forum findUserById(int id);
+    Forum findForumById(int id);
 
     /**
      *
      * @param forum
-     * @return
+     * @return int
      */
     //更新数据
     int update(Forum forum);

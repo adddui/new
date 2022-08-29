@@ -14,7 +14,7 @@
         from notice
         where id = #{id};
     </delete>
-    <select id="findUserById" resultType="com.example.project.entity.Notice">
+    <select id="findNoticeById" resultType="com.example.project.entity.Notice">
         select *
         from notice
         where id = #{id};

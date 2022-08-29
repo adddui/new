@@ -11,7 +11,7 @@ public interface UserDAOService {
     //新增数据
     int add(User user);
     //删除数据
-    Integer delete(int id);
+    int delete(int id);
     //根据id查找
     User findUserById(int id);
     //根据name查找

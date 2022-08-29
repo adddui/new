@@ -14,7 +14,7 @@
         from forum
         where id = #{id};
     </delete>
-    <select id="findUserById" resultType="com.example.project.entity.Forum">
+    <select id="findForumById" resultType="com.example.project.entity.Forum">
         select *
         from forum
         where id = #{id};

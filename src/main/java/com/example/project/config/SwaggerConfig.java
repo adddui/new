@@ -26,7 +26,9 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 //RequestHandlerSelectors配置要扫描接口的方式
+                //扫描
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
+                //过滤
                 .paths(PathSelectors.any())
                 .build();
     }

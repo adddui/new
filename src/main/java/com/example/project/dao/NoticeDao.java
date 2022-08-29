@@ -2,6 +2,7 @@ package com.example.project.dao;
 
 import com.example.project.entity.Notice;
 import com.example.project.entity.User;
+import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 public interface NoticeDao {
     /**
      *
-     * @return
+     * @return Notice
      */
     List<Notice> findAll();
     /**
@@ -22,10 +23,10 @@ public interface NoticeDao {
     /**
      *
      * @param id
-     * @return
+     * @return int
      */
     //删除数据
-    Integer delete(int id);
+    int delete(int id);
 
     /**
      *
@@ -33,7 +34,7 @@ public interface NoticeDao {
      * @return Notice
      */
     //根据id查找
-    Notice findUserById(int id);
+    Notice findNoticeById(int id);
     //更新数据
     /**
      *

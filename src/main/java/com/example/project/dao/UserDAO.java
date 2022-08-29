@@ -1,6 +1,7 @@
 package com.example.project.dao;
 
 import com.example.project.entity.User;
+import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,7 +27,7 @@ public interface UserDAO {
      * @param id
      * @return Integer
      */
-    Integer delete(int id);
+    int delete(int id);
     //根据id查找
 
     /**

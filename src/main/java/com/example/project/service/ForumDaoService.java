@@ -1,19 +1,25 @@
 package com.example.project.service;
 
+import com.example.project.entity.Forum;
 import com.example.project.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public interface ForumDaoService {
-    List<User> findAll();
+    List<Forum> findAll();
+
     //新增数据
-    int add(User user);
+    int add(Forum forum);
+
     //删除数据
-    Integer delete(int id);
+    int delete(int id);
+
     //根据id查找
-    User findUserById(int id);
+    Forum findForumById(int id);
+
     //更新数据
-    int update(User user);
+    int update(Forum forum);
 }
