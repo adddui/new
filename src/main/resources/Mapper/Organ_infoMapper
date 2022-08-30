@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.project.dao.OrganDao">
+    <select id="findAll" resultType="com.example.project.entity.Organ">
+        select *
+        from organ;
+    </select>
+    <insert id="add" parameterType="com.example.project.entity.Organ">
+        insert organ
+        values (id=#{id}, organName=#{organName}, address = #{address});
+    </insert>
+    <delete id="delete" parameterType="int">
+        delete
+        from organ
+        where id = #{id};
+    </delete>
+    <select id="findOrganById" resultType="com.example.project.entity.Organ">
+        select *
+        from organ
+        where id = #{id};
+    </select>
+    <update id="update" parameterType="com.example.project.entity.Organ">
+        update organ
+        set id=#{id},
+            organName=#{organName},
+            address=#{address}
+        where id = #{id}
+    </update>
+</mapper>
