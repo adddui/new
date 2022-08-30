@@ -8,7 +8,7 @@
     <insert id="add" parameterType="com.example.project.entity.User">
         insert user
         values (#{id}, #{name}, #{code}, #{password}, #{salt}, #{account}, #{lastTime}, #{idcard}, #{res}, #{gender},
-                #{img}, #{address});
+                #{img}, #{address}, #{phone}, #{trace});
     </insert>
     <delete id="delete" parameterType="int">
         delete
@@ -37,7 +37,9 @@
             res= #{res},
             gender= #{gender},
             img=#{img},
-            address= #{address}
+            address= #{address},
+            phone=#{phone},
+            trace=#{trace}
         where id = #{id}
     </update>
 </mapper>

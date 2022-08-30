@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.project.dao.ForumDao">
+<mapper namespace="com.example.project.dao.">
     <select id="findAll" resultType="com.example.project.entity.Forum">
         select *
-        from notice;
+        from forum;
     </select>
     <insert id="add" parameterType="com.example.project.entity.Forum">
         insert forum
