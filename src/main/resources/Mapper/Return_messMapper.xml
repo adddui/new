@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.project.dao.Out_messDao">
+<mapper namespace="com.example.project.dao.Return_messDao">
  <!--
     namespace：对应的dao接口的全路径
     id：接口中的方法名
@@ -12,21 +12,22 @@
     </select>
 
     <insert id="add" parameterType="com.example.project.entity.Return_mess">
-        insert into return_mess(id, buildTime, uid, pod, destination, startTime, endTime)
+        insert into return_mess(id, buildTime, uid, pod, destination, startTime, endTime,temp)
         values (#{id},
                 #{buildTime},
                 #{uid},
                 #{pod},
                 #{destination},
                 #{startTime},
-                #{endTime});
+                #{endTime},
+                #{temp});
     </insert>
 
     <delete id="delete">
           delete from return_mess where id =#{id};
     </delete>
-    <update id="update" parameterType="com.example.project.Return_mess">
-        update return_mess set buildTime=#{buildTime},uid=#{uid},pod=#{pod},destination=#{destination},startTime=#{startTime},endTime= #{endTime}
+    <update id="update" parameterType="com.example.project.entity.Return_mess">
+        update return_mess set buildTime=#{buildTime},uid=#{uid},pod=#{pod},destination=#{destination},startTime=#{startTime},endTime= #{endTime},temp=#{temp}
         where id=#{id};
     </update>
     

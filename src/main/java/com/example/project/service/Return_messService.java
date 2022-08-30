@@ -3,10 +3,11 @@ package com.example.project.service;
 
 
 import com.example.project.entity.Return_mess;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public interface Return_messService {
     List<Return_mess> findAll();
 

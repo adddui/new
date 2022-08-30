@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <script src="./js/vue.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="title-box">
+        <h3 class="title">社区疫情防控系统</h3>
+    </div>
+    <!-- 菜单 -->
+    <div class="menu">
+        <ul>
+            <li><a href="#"><span class="shouye">首页</span></a></li>
+            <li><a href="forum.html">社区论坛</a></li>
+            <li><a href="#">个人中心</a></li>
+            <li><a href="#">后台管理</a></li>
+        </ul>
+    </div>
+    <div class="base-info-box">
+        <div class="sub-title"><span>基本信息</span></div>
+
+        <div class="main-info" id="main_info">
+            <div class="main-info-result-box" v-show="is_result_show">
+                <img src="./img/code.png" alt="健康码" class="code">
+                <div class="result">
+                    <!-- 核酸检测结果 -->
+                    <div class="hesuan" @click="show_result">核酸检测结果</div>
+                    <!-- 风险地旅居史 -->
+                    <div class="history" @click="show_history">风险地旅居史</div>
+
+                </div>
+                <!-- 个人信息 -->
+                <div class="info-box">
+                    <h2 id="true-name">张三</h2>
+                    <span id="id">510000000000000000</span>
+                </div>
+            </div>
+            <!-- 核酸检测结果详情 -->
+            <div class="hesuan-check-info" id="hesuan_check_info" v-show="is_result_info_show">
+                <table>
+                    <caption>
+                        <h3>核酸检测结果查询</h3>
+                    </caption>
+                    <tr class="table_header">
+                        <th>检测日期</th>
+                        <th>检测机构</th>
+                        <th>检测结果</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+                <input type="button" value="返回" class="return" @click="show_result">
+            </div>
+            <!-- 风险地旅居史 -->
+            <div class="history_info" id="history_info" v-show="is_history_show">
+                <table>
+                    <caption>
+                        <h3>风险地区旅居史</h3>
+                    </caption>
+                    <tr class="table_header">
+                        <th>风险地区</th>
+                        <th>风险等级</th>
+                        <th>到达时间</th>
+                        <th>离开时间</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                    </tr>
+                </table>
+                <input type="button" value="返回" class="return" @click="show_history">
+
+            </div>
+            <!-- 公告 -->
+            <div class="main-info-notice-box">
+
+                <ul class="notice">
+                    <span class="notice-title">社区公告</span>
+                    <li>公告1
+                    </li>
+                    <li>公告2</li>
+                    <li>公告3</li>
+                    <li>公告4</li>
+                    <li>公告5</li>
+                    <!-- <li></li> -->
+                </ul>
+                <input type="button" value="更多" class="more-button" onclick="">
+            </div>
+
+        </div>
+    </div>
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

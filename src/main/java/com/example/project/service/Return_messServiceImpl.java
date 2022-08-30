@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class Return_messImpl implements Return_messService{
+@Service("Return_messServiceImpl")
+public class Return_messServiceImpl implements Return_messService{
     @Autowired
     Return_messDao return_messDao;
 

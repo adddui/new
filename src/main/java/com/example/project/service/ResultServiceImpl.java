@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("ResultServiceImpl")
 public class ResultServiceImpl implements ResultService{
     @Autowired
     ResultDao resultDao;
