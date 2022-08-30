@@ -193,7 +193,7 @@ a:focus {
 .hesuan {
     width: 270px;
     height: 80px;
-    background-color: blue;
+    background-color: #0997f7;
     margin-bottom: 50px;
     border-radius: 5px;
     color: white;
@@ -207,7 +207,7 @@ a:focus {
 .history {
     min-width: 270px;
     height: 80px;
-    background-color: blue;
+    background-color: #0997f7;
     border-radius: 5px;
     color: white;
     text-align: center;
@@ -353,7 +353,7 @@ a:focus {
     align-items: center;
     flex-wrap: wrap;
     min-width: 40%;
-    width: 90%;
+    width: 70%;
     max-height: 600px;
     overflow-y: hidden;
 }
@@ -367,7 +367,7 @@ a:focus {
     margin: 0 auto;
     /* flex-direction: row; */
     height: 80px;
-    width: 350px;
+    width: 400px;
     background-color: #0997f7;
     margin-top: 10px;
     border-radius: 5px;
@@ -426,4 +426,204 @@ body::-webkit-scrollbar {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
     background: transparent;
+}
+
+
+/* 弹出窗口 */
+
+.add-post-box {
+    padding: 0;
+    /* display: none; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 40%;
+    width: 40%;
+    max-height: 600px;
+    overflow-y: hidden;
+    border-radius: 5px;
+    box-shadow: 7px 8px 11px rgb(0 0 0 / 50%);
+    backdrop-filter: blur(50px);
+}
+
+.add-post-box>ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 0;
+}
+
+.add-post-box>ul>li {
+    width: 400px;
+    list-style: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+}
+
+.add-post-box>ul>li:hover {
+    border: none;
+}
+
+
+/* 帖子标题输入框 */
+
+.post-title {
+    width: 400px;
+    height: 40px;
+    border: none;
+    /* height: 40px; */
+    /* width: 300px; */
+    padding: 0;
+    color: white;
+    font-size: 17px;
+    background-color: transparent;
+    /* border: none; */
+    border-bottom: 2px solid skyblue;
+    outline: none;
+    padding-left: 20px;
+    border-radius: 8px;
+}
+
+.post-title::placeholder {
+    color: white;
+}
+
+.post-title:hover {
+    border-bottom: 2px solid blue;
+}
+
+.post-title:focus {
+    border-bottom: 2px solid blue;
+    border-left: 2px solid blue;
+}
+
+
+/* 帖子内容输入框 */
+
+.post-content {
+    width: 500px;
+    height: 200px;
+    border: none;
+    padding-top: 10px;
+    color: white;
+    font-size: 17px;
+    background-color: transparent;
+    border-bottom: 2px solid skyblue;
+    outline: none;
+    padding-left: 20px;
+    border-radius: 8px;
+}
+
+.post-content:focus {
+    border-bottom: 2px solid blue;
+    border-left: 2px solid blue;
+}
+
+.post-content::placeholder {
+    color: white
+}
+
+strong {
+    font-size: 18px;
+    margin: 5px 150px 5px 150px;
+    /* padding: 0 50px 0 50px; */
+}
+
+.edit {
+    font-size: 18px;
+    width: 90%;
+}
+
+.post-button-box-1 {
+    border: none;
+    margin: 0;
+    padding: 0;
+    word-spacing: 30px;
+}
+
+.post-button-box-1>input {
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+.post-button-comfirm {
+    background-color: #42ec42;
+    color: white;
+}
+
+.post-button-cancel {
+    background-color: red;
+    color: white;
+}
+
+.post-button-box-1:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.post-button-box-1>input:hover {
+    border: none;
+    cursor: pointer;
+}
+
+
+/* 核酸详情 */
+
+#history_info,
+#hesuan_check_info {
+    min-width: 40%;
+    max-width: 700px;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    color: white;
+    overflow-y: hidden;
+    /* background-color: white;*/
+}
+
+#hesuan_check_info:hover {
+    overflow-y: auto;
+}
+
+#history_info>table,
+#hesuan_check_info>table {
+    text-align: center;
+    /* border: 1; */
+    border: 1px solid #0997f7;
+    width: 600px;
+    border-collapse: collapse;
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+#history_info>table>tr>td,
+#hesuan_check_info>table>tr>td {
+    border: 1px solid #0997f7;
+    border-radius: 5px;
+}
+
+.table_header {
+    background-color: rgba(3, 151, 243, 0.8);
+}
+
+.return {
+    width: 70px;
+    height: 30px;
+    margin: 10px 150px 10px 150px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0997f7;
+    color: white;
 }
