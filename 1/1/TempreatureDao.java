@@ -1,6 +1,5 @@
 package com.example.project.dao;
 import com.example.project.entity.User;
-import com.example.project.entity.Tempreature;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 @Mapper

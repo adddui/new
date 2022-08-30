@@ -1,5 +1,4 @@
 package com.example.project.service;
-import com.example.project.entity.Organ_info;
 import com.example.project.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;

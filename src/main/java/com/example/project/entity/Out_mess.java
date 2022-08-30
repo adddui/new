@@ -9,8 +9,8 @@ public class Out_mess {
     String pod;//出发地
     String destination;
     Timestamp buildTime;
-    Timestamp startime;
-    Timestamp endtime;
+    Timestamp startTime;
+    Timestamp endTime;
 
     public double getTemp() {return temp;}
 
@@ -57,19 +57,19 @@ public class Out_mess {
     }
 
     public Timestamp getStartime() {
-        return startime;
+        return startTime;
     }
 
     public void setStartime(Timestamp startime) {
-        this.startime = startime;
+        this.startTime = startime;
     }
 
     public Timestamp getEndtime() {
-        return endtime;
+        return endTime;
     }
 
     public void setEndtime(Timestamp endtime) {
-        this.endtime = endtime;
+        this.endTime = endtime;
     }
 
 
