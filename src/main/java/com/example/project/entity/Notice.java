@@ -3,6 +3,8 @@ package com.example.project.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
 import java.sql.Timestamp;
 
 @Data
@@ -11,6 +13,6 @@ import java.sql.Timestamp;
 public class Notice {
     private int id;
     private String context;
-    private Timestamp postTime;
+    private Date postTime;
     private String title;
 }

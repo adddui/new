@@ -1,9 +1,7 @@
 package com.example.project.controller;
 
 import com.example.project.entity.Forum;
-import com.example.project.entity.Notice;
 import com.example.project.service.ForumDaoServiceImpl;
-import com.example.project.service.NoticeDaoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
