@@ -3,6 +3,8 @@ package com.example.project.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.joda.time.DateTime;
+
 import java.sql.Timestamp;
 
 @Data

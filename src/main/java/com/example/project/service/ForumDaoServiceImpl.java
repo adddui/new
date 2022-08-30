@@ -1,5 +1,6 @@
 package com.example.project.service;
 
+import com.example.project.dao.ForumDao;
 import com.example.project.entity.Forum;
 import com.example.project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,29 +10,29 @@ import java.util.List;
 @Service("ForumDaoServiceImpl")
 public class ForumDaoServiceImpl implements ForumDaoService{
     @Autowired
-    ForumDaoService forumDaoService;
+    ForumDao forumDao;
     @Override
     public List<Forum> findAll() {
-        return forumDaoService.findAll();
+        return forumDao.findAll();
     }
 
     @Override
     public int add(Forum forum) {
-        return forumDaoService.add(forum);
+        return forumDao.add(forum);
     }
 
     @Override
     public int delete(int id) {
-        return forumDaoService.delete(id);
+        return forumDao.delete(id);
     }
 
     @Override
     public Forum findForumById(int id) {
-        return forumDaoService.findForumById(id);
+        return forumDao.findForumById(id);
     }
 
     @Override
     public int update(Forum forum) {
-        return forumDaoService.update(forum);
+        return forumDao.update(forum);
     }
 }
