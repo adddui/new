@@ -1,8 +1,6 @@
 package com.example.project.dao;
 
 import com.example.project.entity.Notice;
-import com.example.project.entity.User;
-import io.swagger.annotations.Api;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

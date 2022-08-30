@@ -17,6 +17,5 @@ public class Forum {
     private int builder;
     private String message;
     private Date sendTime;
-    private Time time;
     private String title;
 }

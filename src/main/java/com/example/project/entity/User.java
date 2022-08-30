@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     private int id;
     private String name;
@@ -14,7 +17,7 @@ public class User {
     private String password;
     private String salt;
     private String account;
-    private Timestamp lastTime;
+    private Date lastTime;
     private String idcard;
     private String res;
     private String gender;
