@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service("Out_messServiceImpl")
 public class Out_messServiceImpl implements Out_messService {
     @Autowired
     Out_messDao outmessDao;

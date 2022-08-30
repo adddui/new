@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.project.dao.Out_messDao">
+<mapper namespace="com.example.project.dao.ResultDao">
  <!--
     namespace：对应的dao接口的全路径
     id：接口中的方法名
@@ -24,7 +24,7 @@
     <delete id="delete">
           delete from result where id =#{id};
     </delete>
-    <update id="update" parameterType="com.example.project.Result">
+    <update id="update" parameterType="com.example.project.entity.Result">
         update result set uid=#{uid},resultStatus=#{resultStatus},sampleTime=#{sampleTime},oid=#{oid},checkTime=#{checkTime}
         where id=#{id};
     </update>

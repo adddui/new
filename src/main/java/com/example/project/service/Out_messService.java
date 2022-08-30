@@ -1,11 +1,12 @@
 package com.example.project.service;
 
 import com.example.project.entity.Out_mess;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
-
+@Service
 public interface Out_messService {
     List<Out_mess>  findAll();
 

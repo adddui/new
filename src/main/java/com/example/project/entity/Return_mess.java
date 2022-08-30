@@ -7,11 +7,16 @@ import java.sql.Timestamp;
 public class Return_mess {
     int id;
     int uid;
+    double temp;//体温
     String pod;
     String destination;
     Timestamp buildTime;
     Timestamp startime;
     Timestamp endtime;
+
+    public double getTemp() {return temp;}
+
+    public void setTemp(double temp) {this.temp = temp;}
 
     public int getId() {
         return id;

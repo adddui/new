@@ -12,17 +12,18 @@
     </select>
 
     <insert id="add" parameterType="com.example.project.entity.Out_mess">
-        insert into out_mess(id, buildTime, uid, pod, destination, startTime, endTime)
+        insert into out_mess(id, buildTime, uid, pod, destination, startTime, endTime,temp)
         values (#{id},
                 #{buildTime},
                 #{uid},
                 #{pod},
                 #{destination},
                 #{startTime},
-                #{endTime});
+                #{endTime},
+                #{temp});
     </insert>
     <update id="update" parameterType="com.example.project.entity.Out_mess">
-        update out_mess set buildTime=#{buildTime},uid=#{uid},pod=#{pod},destination=#{destination},startTime=#{startTime},endTime= #{endTime}
+        update out_mess set buildTime=#{buildTime},uid=#{uid},pod=#{pod},destination=#{destination},startTime=#{startTime},endTime= #{endTime},temp=#{temp}
               where id=#{id};
     </update>
     <delete id="delete" >
