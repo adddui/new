@@ -30,7 +30,6 @@ public class ValidateController {
 
         //生成验证码
         String capText = captchaProducer.createText();
-
         //把生成的验证码放入redis缓存:针对每个用户的验证码都会放入redis
         //每个用户的验证码跟validateId绑定
         String userValidateId = UUID.randomUUID().toString();

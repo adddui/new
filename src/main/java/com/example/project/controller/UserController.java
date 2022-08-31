@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserController {
     UserDAOServiceImpl userDAOService;
 
     @RequestMapping(value = "findAllUser")
+    @ResponseBody
     @ApiOperation("查找所有")
     List<User> findAll() {
         return userDAOService.findAll();
