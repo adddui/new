@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <script src="./js/md5.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+    <div class="login" id="login">
+        <div class="register-box">
+            <ul>
+                <li>
+                    <h2 class="title">注册系统账户</h2><br>
+                </li>
+                <li><input type="text" class="register-username" id="username" placeholder="请输入账号" v-model="username"></li>
+                <li><input type="password" class="register-password" id="password" placeholder="请输入密码" v-model="password"></li>
+                <li><input type="password" class="register-password" id="confirm-password" placeholder="请确认密码" v-model="comfirm_password"></li>
+                <li><input type="password" class="register-nickname" id="nick-name" placeholder="请输入昵称" v-model="nick_name"></li>
+                <li class="validate-code-box">
+                    <input type="password" class="login-code" id="validate_code" placeholder="请输入验证码" v-model="validate_code">
+                    <img src="./img/validate-code-img.png" alt="验证码" class="code-img" onclick="refresh()">
+                </li>
+                <li>
+                    <input type="button" class="login-button" v-model="register_status" @click="register">
+                </li>
+                <li>
+                    已有帐户？<a href="./login.html">点击登录</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/register.js"></script>
+</body>
+
+</html>
