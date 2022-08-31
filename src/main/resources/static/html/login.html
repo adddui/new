@@ -8,6 +8,8 @@
     <title>LOGIN</title>
     <link rel="stylesheet" href="./css/login.css">
     <link rel="stylesheet" href="./font/iconfont.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <script src="./js/md5.js"></script>
 </head>
 
 <body>
@@ -19,6 +21,10 @@
                 </li>
                 <li><input type="text" class="login-username" id="username" placeholder="请输入账号" /></li>
                 <li><input type="password" class="login-password" id="password" placeholder="请输入密码" /></li>
+                <li class="validate-code-box">
+                    <input type="password" class="login-code" id="validate_code" placeholder="请输入验证码" />
+                    <img src="./img/validate-code-img.png" alt="验证码" class="code-img">
+                </li>
                 <li>
                     <strong>用户身份</strong>
                     <input type="radio" class="login-id" name="login-id" value="admin" /><span>管理员</span>
@@ -34,6 +40,9 @@
 
         </div>
     </div>
+    <script>
+        console.log(axios)
+    </script>
 </body>
 
 </html>
