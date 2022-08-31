@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区论坛</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+</head>
+
+<body>
+    <div class="title-box">
+        <h3 class="title">社区疫情防控系统</h3>
+    </div>
+    <!-- 菜单 -->
+    <div class="menu">
+        <ul>
+            <li><a href="index.html">首页</a></li>
+            <li><a href="#"><span class="shouye">社区论坛</span></a></li>
+            <li><a href="#">个人中心</a></li>
+            <li><a href="#">后台管理</a></li>
+        </ul>
+    </div>
+    <!-- 正文区域 -->
+    <div class="base-info-box" id="app">
+        <div class="sub-title"><span>社区论坛</span></div>
+        <div class="post-button-box">
+            <input type="button" value="发布" class="post-button" id="post_botton_1" @click="show_edit()">
+        </div>
+        <div class="post-box" id="post_box" v-show="is_notice_show">
+            <ul class="notice-content">
+                <li v-for="post in posts">
+                    <div class="notice_info">
+                        <div class="notice_info_content">
+                            <h4> {{ post.title }} （发布者：{{post.author}}）</h4>
+                        </div>
+                        <p>{{ post.time }}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 接下来是发帖的弹出窗 -->
+        <div class="add-post-box" id="add_post_box" v-show="is_edit_show">
+            <ul class="post">
+                <li class="edit"><strong>编辑帖子</strong></li>
+                <!-- 标题 -->
+                <li class="post-title-box">
+                    <input type="text" class="post-title" id="post-title" placeholder="请输入标题" v-model="post_title">
+                </li>
+                <!-- 内容 -->
+                <li class="post-content-box">
+                    <textarea name="post-content" class="post-content" id="post-content" cols="30" rows="10" placeholder="请输入帖子内容" v-model="post_content"></textarea>
+                </li>
+                <li class="post-button-box-1">
+                    <input type="button" class="post-button-comfirm" id="post-button" value="发布" @click="post">
+                    <input type="button" class="post-button-cancel" id="post-button-concel" value="取消" @click="show_edit">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="./js/forum.js"></script>
+
+</body>
+
+</html>
