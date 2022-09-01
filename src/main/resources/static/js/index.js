@@ -16,6 +16,10 @@ var vm = new Vue({
                 { check_time: '2022-2-3', check_organ: '成都理工大学校医院', check_result: '阴' },
                 { check_time: '2022-2-4', check_organ: '成都理工大学校医院', check_result: '阴' },
                 { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
+                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
+                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
+                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
+                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
             ],
             //风险地旅居史
             history: [
@@ -23,15 +27,18 @@ var vm = new Vue({
                 { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
                 { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
                 { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-
+                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
+                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
+                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
+                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
             ],
             //公告
             notice: [
-                { title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { title: '疫情防控，人人有责！', time: '2022-8-31' },
+                { nid: '1', title: '疫情防控，人人有责！', time: '2022-8-31' },
+                { nid: '2', title: '疫情防控，人人有责！', time: '2022-8-31' },
+                { nid: '3', title: '疫情防控，人人有责！', time: '2022-8-31' },
+                { nid: '4', title: '疫情防控，人人有责！', time: '2022-8-31' },
+                { nid: '5', title: '疫情防控，人人有责！', time: '2022-8-31' },
             ]
 
         },
@@ -70,7 +77,9 @@ var vm = new Vue({
 
                 }).then(res => function() {
                     // 将获取到的数据进行操作
-                    this.hesuan_result.push(res.data.result);
+                    if (this.hesuan_result.length <= 8) {
+                        this.hesuan_result.push(res.data.result);
+                    }
                 })
             },
 
@@ -80,7 +89,9 @@ var vm = new Vue({
                     //给服务器的参数
                 }).then(res => function() {
                     //将获取到的数据存入数组
-                    this.history.push(res.data.result);
+                    if (this.history.length <= 8) {
+                        this.history.push(res.data.result);
+                    }
                 })
             },
 
@@ -91,7 +102,9 @@ var vm = new Vue({
                     //给服务器的参数
                 }).then(res => function() {
                     //将得到的数据存入数组
-                    this.notice.push(res.data.result);
+                    if (this.notice.length <= 5) {
+                        this.notice.push(res.data.result);
+                    }
                 })
             },
 
@@ -106,8 +119,6 @@ var vm = new Vue({
                     this.id_num = res.data.id_num;
                 })
             }
-
-
         },
     }
 
