@@ -130,6 +130,8 @@
                     <include>**/*.properties</include>
                     <include>mapper/*.xml</include>
                     <include>**/js/*.js</include>
+                    <include>**/css/*.css</include>
+                    <include>**/img/**</include>
                     <include>**/*.html</include>
                 </includes>
             </resource>

@@ -23,7 +23,7 @@ public class RegisterController {
         String code=RandomUtil.randomString(10);
         String salt=RandomUtil.randomString(10);
         String finalPassword = MD5Util.formPassToDBPass(password, salt);
-//        User users=new User(id,username,finalPassword,code,salt);
+     User users=new User(id,username,code,finalPassword,salt,null,null,null,null,null,null,null,null,null);
 //        userDao.addUser(users);
         return "注册成功";
     }

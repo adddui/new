@@ -7,7 +7,7 @@
     </select>
     <insert id="add" parameterType="com.example.project.entity.Organ">
         insert organ
-        values (id=#{id}, organName=#{organName}, address = #{address});
+        values (id = #{id}, organName = #{organName}, address = #{address});
     </insert>
     <delete id="delete" parameterType="int">
         delete
@@ -21,8 +21,7 @@
     </select>
     <update id="update" parameterType="com.example.project.entity.Organ">
         update organ
-        set id=#{id},
-            organName=#{organName},
+        set organName=#{organName},
             address=#{address}
         where id = #{id}
     </update>

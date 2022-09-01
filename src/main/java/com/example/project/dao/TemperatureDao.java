@@ -14,7 +14,7 @@ public interface TemperatureDao {
     int add(Temperature temperature);
 
     //删除数据
-    Integer delete(int id);
+    int delete(int id);
 
     //根据id查找
     Temperature findTemperatureById(int id);

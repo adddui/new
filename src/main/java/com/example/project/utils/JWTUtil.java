@@ -7,6 +7,8 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 import java.util.Date;
 
+import static sun.security.x509.X509CertImpl.SIGNATURE;
+
 /**
  * 生成token和验证token
  */
@@ -53,9 +55,12 @@ public class JWTUtil {
     }
 
     public static void main(String[] args) {
-        String token = sign("admin","e10adc3949ba59abbe56e057f20f883e");
+        String token = sign("admin","e10adc3949bew3fwa59abbe5ffe7f20f88414");
         System.out.println(token);
     }
 
 
+    public static void verify(String token) {
+        JWT.require(Algorithm.HMAC256(SIGNATURE)).build().verify(token);
+    }
 }

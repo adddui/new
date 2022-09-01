@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -26,7 +25,7 @@ public class ValidateController {
 
 
     @RequestMapping("kaptcha")
-    public Map<String, Object> getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Map<String, Object> getKaptchaImage(HttpServletResponse response) throws IOException {
 
         //生成验证码
         String capText = captchaProducer.createText();
@@ -38,9 +37,8 @@ public class ValidateController {
          redisUtil.set(userValidateId, capText);
         //把validateId发送给用户
         response.setHeader("validateKey", userValidateId);
-
         //向客户端输出
-        byte[] captcha = null;
+        byte[] captcha;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         BufferedImage bi = captchaProducer.createImage(capText);
@@ -50,7 +48,6 @@ public class ValidateController {
         Map<String, Object> map = new HashMap<>();
         Base64.Encoder encoder = Base64.getEncoder();
         map.put("captcha", "data:image/jpg;base64," + encoder.encodeToString(captcha));
-
         return map;
 
     }
