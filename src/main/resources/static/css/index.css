@@ -171,6 +171,9 @@ a:focus {
     min-width: 40%;
     max-width: 700px;
     flex-wrap: wrap;
+    min-width: 40%;
+    max-width: 700px;
+    /* overflow: hidden; */
     /* background-color: white; */
 }
 
@@ -594,6 +597,7 @@ strong {
     /* background-color: white;*/
 }
 
+#history_info:hover,
 #hesuan_check_info:hover {
     overflow-y: auto;
 }
