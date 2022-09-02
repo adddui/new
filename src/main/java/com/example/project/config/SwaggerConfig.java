@@ -12,6 +12,8 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import java.security.Timestamp;
+
 /**
  * 通过该配置类实现swaggerg工具的注入
  * 通过一些注解，让类能够被框架管理，被使用
@@ -30,7 +32,9 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.withClassAnnotation(Api.class))
                 //过滤
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .directModelSubstitute(Timestamp.class, String.class);
+
     }
 
     //基本信息的配置，信息会在api文档上显示

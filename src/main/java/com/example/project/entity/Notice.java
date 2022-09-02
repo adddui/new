@@ -13,6 +13,6 @@ import java.sql.Timestamp;
 public class Notice {
     private int id;
     private String context;
-    private Date postTime;
+    private Timestamp postTime;
     private String title;
 }

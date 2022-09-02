@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,8 @@ public class Return_messController {
     @PostMapping(value = "addReturn_mess")
     @ApiOperation("新增Return_mess数据")
         //新增数据
-    int add(Return_mess return_mess) {
+    int add(int uid, double temp, String pod, String destination, Date buildTime, Date startTime, Date endTime) {
+        Return_mess return_mess=new Return_mess(uid,temp,pod,destination,buildTime,startTime,endTime);
         return returnMessService.add(return_mess);
     }
 

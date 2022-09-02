@@ -5,30 +5,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Forum {
     private int id;
     private int builder;
-    private Date sendTime;
+    private Timestamp sendTime;
     private String message;
     private String title;
 
-    public Forum(int id) {
-        new Forum(id, 0);
-    }
+    public Forum(int builder,Timestamp sendTime, String message, String title) {
 
-    public Forum(int id, int builder) {
-        new Forum(id, builder, null);
-    }
-
-    public Forum(int id, int builder, Date sendTime) {
-        new Forum(id, builder, sendTime, null);
-    }
-
-    public Forum(int id, int builder, Date sendTime, String message) {
-        new Forum(id,builder,sendTime,message,null);
+        this.builder = builder;
+        this.sendTime =sendTime;
+        this.message = message;
+        this.title = title;
     }
 }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,8 @@ public class UserController {
     @PostMapping(value = "addUser")
     @ApiOperation("新增User数据")
         //新增数据
-    int add(User user) {
+    int add(String name, String code, String password, String salt, String account, Date lastTime, String idcard, String res, String gender, String img, String address, String phone, String trace) {
+        User user = new User(name, code, password, salt, account, lastTime, idcard, res, gender, img, address, phone, trace);
         return userDAOService.add(user);
     }
 

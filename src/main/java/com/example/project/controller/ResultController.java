@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,8 @@ public class ResultController {
     @PostMapping(value = "addResult")
     @ApiOperation("新增Result数据")
         //新增数据
-    int add(Result result) {
+    int add(int uid, String resultStatus, Date sampleTime, int oid, Date checkTime) {
+        Result result=new Result(uid,resultStatus,sampleTime,oid,checkTime);
         return resultService.add(result);
     }
 

@@ -20,7 +20,7 @@ public class RegisterController {
     @ResponseBody
     @ApiOperation("注册")
     public String register(String name, String password, String account) {
-        if(userDAOService.findExistByAccount(account)) {
+        if(userDAOService.findExistByAccount(account)!=null) {
             return "account已存在";
         }else {
             String salt = RandomUtil.randomString(10);

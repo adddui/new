@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,8 @@ public class TemperatureController {
     @PostMapping(value = "addTemperature")
     @ApiOperation("新增Temperature数据")
         //新增数据
-    int add(Temperature temperature) {
+    int add(int uid, double temp, Date postTime) {
+        Temperature temperature=new Temperature(uid, temp, postTime);
         return TemperatureDaoService.add(temperature);
     }
 
