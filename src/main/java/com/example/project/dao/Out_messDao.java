@@ -19,5 +19,5 @@ public interface Out_messDao {
     int update(Out_mess out_mess);
 
     //查找数据
-    Out_mess findById(int id);
+    Out_mess findOut_messById(int id);
 }

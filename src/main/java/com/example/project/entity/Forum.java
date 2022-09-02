@@ -15,4 +15,20 @@ public class Forum {
     private Date sendTime;
     private String message;
     private String title;
+
+    public Forum(int id) {
+        new Forum(id, 0);
+    }
+
+    public Forum(int id, int builder) {
+        new Forum(id, builder, null);
+    }
+
+    public Forum(int id, int builder, Date sendTime) {
+        new Forum(id, builder, sendTime, null);
+    }
+
+    public Forum(int id, int builder, Date sendTime, String message) {
+        new Forum(id,builder,sendTime,message,null);
+    }
 }

@@ -19,5 +19,8 @@ public interface ResultDao {
     int update(Result result);
 
     //查找数据
-    Result findById(int id);
+    Result findResultById(int id);
+
+    //通过uid查找，只返回一个result
+    Result findResultByUid(int uid);
 }

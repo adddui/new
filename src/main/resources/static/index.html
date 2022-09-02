@@ -55,9 +55,9 @@
                         <th>检测结果</th>
                     </tr>
                     <tr v-for="result in hesuan_result">
-                        <td>{{result.check_time}}</td>
-                        <td>{{result.check_organ}}</td>
-                        <td>{{result.check_result}}</td>
+                        <td>{{ result.checkTime }}</td>
+                        <td>{{ result.oid }}</td>
+                        <td>{{ result.resultStatus }}</td>
                     </tr>
                 </table>
                 <input type="button" value="返回" class="return" @click="show_result">
@@ -75,15 +75,16 @@
                         <th>离开时间</th>
                     </tr>
                     <tr v-for="his in history">
-                        <td>{{his.area}}</td>
-                        <td>{{his.level}}</td>
-                        <td>{{his.arrive_time}}</td>
-                        <td>{{his.leave_time}}</td>
+                        <td>{{his.destination}}</td>
+                        <td>{{his.temp}}</td>
+                        <td>{{his.startime}}</td>
+                        <td>{{his.endtime}}</td>
                     </tr>
                 </table>
                 <input type="button" value="返回" class="return" @click="show_history">
 
             </div>
+
             <!-- 公告 -->
             <div class="main-info-notice-box">
                 <ul class="notice">
@@ -93,7 +94,7 @@
                             <div class="notice_info_content">
                                 <h4> {{ item.title }} </h4>
                             </div>
-                            <p>{{ item.time }}</p>
+                            <p>{{ item.postTime }}</p>
                         </div>
                     </li>
                 </ul>

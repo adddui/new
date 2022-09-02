@@ -33,7 +33,13 @@ public class ResultServiceImpl implements ResultService{
     }
 
     @Override
-    public Result findById(int id) {
-        return resultDao.findById(id);
+    public Result findResultById(int id) {
+        return resultDao.findResultById(id);
     }
+
+    @Override
+    public Result findResultByUid(int uid) {
+        return resultDao.findResultByUid(uid);
+    }
+
 }

@@ -8,44 +8,25 @@ var vm = new Vue({
             //绑定参数
             true_name: '张三', //真实姓名
             id_num: '510000000000000000', //身份证号
-
-            url: '', //存放请求目标地址
+            //存放请求目标地址
+            hesuan_result_url: 'findResultById',
+            history_url: 'findAllReturn_mess',
+            notice_url:'findAllNotice',
+            true_info_url:'findUserByName',
             //核酸结果暂存
-            hesuan_result: [
-                { check_time: '2022-2-2', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-3', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-4', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
-                { check_time: '2022-2-5', check_organ: '成都理工大学校医院', check_result: '阴' },
-            ],
+            hesuan_result: [],
             //风险地旅居史
-            history: [
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-                { area: '成都理工大学', level: '中风险', arrive_time: '3', leave_time: '4' },
-            ],
+            history: [],
             //公告
-            notice: [
-                { nid: '1', title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { nid: '2', title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { nid: '3', title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { nid: '4', title: '疫情防控，人人有责！', time: '2022-8-31' },
-                { nid: '5', title: '疫情防控，人人有责！', time: '2022-8-31' },
-            ]
-
+            notice: [],
+            //身份信息
+            id_info:[],
         },
         methods: {
             // 控制左边部分显示什么
-            show_result: function() {
-                if (this.is_result_info_show == true) {
+            show_result: function () {
+                this.get_hesuan_check_result();
+                if (this.is_result_info_show === true) {
                     this.is_result_show = true;
                     this.is_history_show = false;
                     this.is_result_info_show = false;
@@ -57,8 +38,9 @@ var vm = new Vue({
 
 
             },
-            show_history: function() {
-                if (this.is_history_show == true) {
+            show_history: function () {
+                this.get_history();
+                if (this.is_history_show === true) {
                     this.is_result_info_show = false;
                     this.is_result_show = true;
                     this.is_history_show = false;
@@ -71,55 +53,73 @@ var vm = new Vue({
 
 
             // 获取核酸检测结果
-            get_hesuan_check_result: function() {
-                axios.post(this.url, {
-                    //给服务器的参数
-
-                }).then(res => function() {
+            get_hesuan_check_result: function () {
+                let that = this;
+                axios.post(this.hesuan_result_url,{
+                    id:1,
+                }).then(function (res) {
                     // 将获取到的数据进行操作
-                    if (this.hesuan_result.length <= 8) {
-                        this.hesuan_result.push(res.data.result);
+                    // console.log(response.data);
+                    for (var i = 0; i <= 8; i++) {
+                        // 将结果放到数组里面，少放点
+                        // console.log(res);
+                        that.hesuan_result = res.data;
                     }
+                    // 打印一下看看咯
+                    // console.log(that.hesuan_result);
                 })
             },
 
             //获取旅居史
-            get_history: function() {
-                axios.post(this.url, {
+            get_history: function () {
+                let that = this;
+                axios.post(this.history_url, {
                     //给服务器的参数
-                }).then(res => function() {
+                }).then(function (res) {
                     //将获取到的数据存入数组
-                    if (this.history.length <= 8) {
-                        this.history.push(res.data.result);
+                    for (var i = 0; i < 8; i++) {
+                        that.history = res.data;
                     }
+                    console.log(res);
+                    // 打印一下试试看
+                    console.log(that.history);
                 })
             },
 
             //获取公告
-
-            get_notice: function() {
-                axios.post(this.url, {
+            get_notice: function () {
+                var that = this;
+                axios.post(this.notice_url, {
                     //给服务器的参数
-                }).then(res => function() {
-                    //将得到的数据存入数组
-                    if (this.notice.length <= 5) {
-                        this.notice.push(res.data.result);
+                }).then(function (res) {
+                    //将获取到的数据存入数组
+                    for (var i = 0; i < 8; i++) {
+                        that.notice = res.data;
                     }
+                    // 打印一下试试看
+                    // console.log(that.notice);
                 })
             },
 
             //获取真实姓名等信息
 
-            get_true_info: function() {
-                axios.post(this.url, {
+            get_true_info: function () {
+                var that = this;
+                axios.post(this.true_info_url, {
                     //给服务器的参数
-                }).then(res => function() {
-                    //将得到的数据存入
-                    this.true_name = res.data.true_name;
-                    this.id_num = res.data.id_num;
+                    name:'lisi',
+                }).then(function (res) {
+                    //将获取到的数据存入数据
+                    that.id_info = res.data;
+                    // that.id_num = res.data.idcard;
+                    // 打印一下试试看
+                    console.log(that.id_info);
                 })
             }
         },
+    mounted(){
+            this.get_notice();
+            this.get_true_info();
+    },
     }
-
-)
+);

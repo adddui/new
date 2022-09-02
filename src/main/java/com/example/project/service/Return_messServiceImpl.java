@@ -34,7 +34,7 @@ public class Return_messServiceImpl implements Return_messService{
     }
 
     @Override
-    public Return_mess findById(int id) {
-        return return_messDao.findById(id);
+    public Return_mess findReturn_messById(int id) {
+        return return_messDao.findReturn_messById(id);
     }
 }

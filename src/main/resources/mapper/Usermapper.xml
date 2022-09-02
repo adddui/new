@@ -6,11 +6,11 @@
         from user;
     </select>
     <insert id="add" parameterType="com.example.project.entity.User">
-        insert user
-        values (#{id}, #{name}, #{code}, #{password}, #{salt}, #{account}, #{lastTime}, #{idcard}, #{res}, #{gender},
+        insert user (name, code, password, salt, account, lastTime, idcard, res, gender, img, address, phone, trace)
+        values (#{name}, #{code}, #{password}, #{salt}, #{account}, #{lastTime}, #{idcard}, #{res}, #{gender},
                 #{img}, #{address}, #{phone}, #{trace});
     </insert>
-    <delete id="delete" parameterType="int">
+    <delete id="delete" parameterType="java.lang.Integer">
         delete
         from user
         where id = #{id};
@@ -24,6 +24,17 @@
         select *
         from user
         where name = #{name};
+    </select>
+    <select id="findExistByAccount" resultType="java.lang.Boolean" parameterType="java.lang.String">
+        select 1
+        from user
+        where account = #{account}
+        limit 1
+    </select>
+    <select id="findUserByAccount" parameterType="java.lang.String" resultType="com.example.project.entity.User">
+        select *
+        from user
+        where account = #{account}
     </select>
     <update id="update" parameterType="com.example.project.entity.User">
         update user

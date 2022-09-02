@@ -40,7 +40,7 @@ public class Return_messController {
     @PostMapping(value = "findReturn_messById")
     @ApiOperation("根据id查找Return_mess")
         //根据id查找
-    Return_mess findById(int id) {return returnMessService.findById(id);}
+    Return_mess findReturn_messById(int id) {return returnMessService.findReturn_messById(id);}
 
 
     @PostMapping(value = "updateReturn_mess")

@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./font/iconfont.css">
+<!--    <link rel="stylesheet" href="./font/iconfont.css">-->
     <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
-    <script src="./js/md5.js"></script>
+<!--    <script src="./js/md5.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.19.0/js/md5.js"></script>
     <script src="./js/vue.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
 </head>
@@ -22,16 +23,12 @@
                     <h2 class="title">欢迎使用社区疫情防控系统</h2>
                 </li>
                 <li><input type="text" class="login-username" id="username" placeholder="请输入账号" v-model="username" /></li>
-                <li><input type="password" class="login-password" id="password" placeholder="请输入密码" v-model="password" /></li>
+                <li><input type="password" class="login-password" id="password" placeholder="请输入密码" v-model="origin_password" /></li>
                 <li class="validate-code-box">
-                    <input type="password" class="login-code" id="validate_code" placeholder="请输入验证码" v-model="validateCode" />
-                    <img src="./img/validate-code-img.png" alt="验证码" class="code-img" onclick="refresh()">
+                    <input type="text" class="login-code" id="validate_code" placeholder="请输入验证码" v-model="validateCode" />
+                    <img src="" alt="验证码" class="code-img" onclick="refresh()" id="captcha">
                 </li>
-                <li>
-                    <strong>用户身份</strong>
-                    <input type="radio" class="login-id" name="login-id" value="admin" v-model="user_id"><span>管理员</span>
-                    <input type="radio" class="login-id" name="login-id" value="user" v-model="user_id"><span>用户</span>
-                </li>
+
                 <li>
                     <input type="button" class="login-button" v-model="login_status" @click="login">
                 </li>

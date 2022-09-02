@@ -6,8 +6,8 @@
         from forum;
     </select>
     <insert id="add" parameterType="com.example.project.entity.Forum">
-        insert forum
-        values (#{id}, #{builder}, #{sendTime},#{message}, #{title});
+        insert forum (builder, sendTime, message, title)
+        values (#{builder}, #{sendTime},#{message}, #{title});
     </insert>
     <delete id="delete" parameterType="int">
         delete

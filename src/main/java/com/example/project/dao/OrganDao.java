@@ -18,6 +18,9 @@ public interface OrganDao {
     //根据id查找
     Organ findOrganById(int id);
 
+    //根据用户找到最近的一次核酸测量结果，在根据oid找到检测机构
+    Organ findOrganByUid(int uid);
+
     //更新数据
     int update(Organ organ);
 }

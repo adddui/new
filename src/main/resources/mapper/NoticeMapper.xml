@@ -6,8 +6,8 @@
         from notice;
     </select>
     <insert id="add" parameterType="com.example.project.entity.Notice">
-        insert notice
-        values (#{id}, #{context}, #{postTime}, #{title});
+        insert notice (context, postTime, title)
+        values (#{context}, #{postTime}, #{title});
     </insert>
     <delete id="delete" parameterType="int">
         delete

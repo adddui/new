@@ -20,34 +20,39 @@ public class JWTUtil {
     //jwt的签发：token：用户名、每个用户有个自己的密钥（用户的秘密）
     //token是使用用户名+用户密码来生成
 
-    public static String sign(String username,String secret){
+    public static String sign(String account,String password){
         Date date = new Date(System.currentTimeMillis()+EXP);//过期时间
-        Algorithm algorithm = Algorithm.HMAC384(secret);
+        Algorithm algorithm = Algorithm.HMAC384(password);
         //附带username
         return JWT.create()
-                .withClaim("username",username)
+                .withClaim("account",account)
+                .withClaim("password",password)
                 .withExpiresAt(date)
                 .sign(algorithm);
 
     }
 
     //验证当前token是否有效
-    public static boolean verify(String token,String username,String secret){
-        Algorithm algorithm = Algorithm.HMAC384(secret);
+    public static boolean verify(String token,String account,String password){
+        Algorithm algorithm = Algorithm.HMAC384(password);
         JWTVerifier verifier = JWT.require(algorithm)
-                .withClaim("username",username).build();
+                .withClaim("account",account).build();
 
         //验证:验证不通过会抛出异常
         DecodedJWT verify = verifier.verify(token);
         return true;
     }
 
-    //从token中能够提取出用户名
-    public static String getUsername(String token){
+    //从token中能够提取出账户
+    public static String getUserAccount(String token){
         DecodedJWT decode = JWT.decode(token);
-        return decode.getClaim("username").asString();
+        return decode.getClaim("account").asString();
     }
-
+    //从token中能够提取出用户名
+    public static String getUserPassword(String token){
+        DecodedJWT decode = JWT.decode(token);
+        return decode.getClaim("password").asString();
+    }
     //能够判断当前token是否过期
     public static boolean isExpire(String token){
         DecodedJWT decode = JWT.decode(token);

@@ -54,6 +54,20 @@ public class UserController {
         return userDAOService.findUserByName(name);
     }
 
+    @PostMapping(value = "findUserByAccount")
+    @ApiOperation("根据name查找User")
+        //根据name查找
+    User findUserByAccount(String account) {
+        return userDAOService.findUserByAccount(account);
+    }
+
+    @PostMapping(value = "findExistByAccount")
+    @ApiOperation("根据name查找User")
+        //根据name查找
+    Boolean findExistByAccount(String account) {
+        return userDAOService.findExistByAccount(account);
+    }
+
     @PostMapping(value = "updateUser")
     @ApiOperation("更新User数据")
         //更新数据

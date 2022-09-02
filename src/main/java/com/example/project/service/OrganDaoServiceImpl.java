@@ -31,6 +31,11 @@ public class OrganDaoServiceImpl implements OrganDaoService {
     }
 
     @Override
+    public Organ findOrganByUid(int uid) {
+        return organDao.findOrganByUid(uid);
+    }
+
+    @Override
     public int update(Organ organ) {
         return organDao.update(organ);
     }

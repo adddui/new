@@ -26,7 +26,7 @@
                 <li><input type="password" class="register-nickname" id="nick-name" placeholder="请输入昵称" v-model="nick_name"></li>
                 <li class="validate-code-box">
                     <input type="password" class="login-code" id="validate_code" placeholder="请输入验证码" v-model="validate_code">
-                    <img src="./img/validate-code-img.png" alt="验证码" class="code-img" onclick="refresh()">
+                    <img src="" alt="验证码" class="code-img" onclick="refresh()" id="captcha">
                 </li>
                 <li>
                     <input type="button" class="login-button" v-model="register_status" @click="register">

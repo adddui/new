@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service("UserDAOServiceImpl")
-public class UserDAOServiceImpl implements UserDAOService{
+public class UserDAOServiceImpl implements UserDAOService {
     @Autowired
     UserDAO userDAO;
+
     @Override
     public List<User> findAll() {
         return userDAO.findAll();
@@ -35,6 +37,14 @@ public class UserDAOServiceImpl implements UserDAOService{
         return userDAO.findUserByName(name);
     }
 
+    @Override
+    public Boolean findExistByAccount(String account) {
+        return userDAO.findExistByAccount(account);
+    }
+    @Override
+    public User findUserByAccount(String account){
+        return  userDAO.findUserByAccount(account);
+    }
     @Override
     public int update(User user) {
         return userDAO.update(user);

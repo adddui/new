@@ -6,8 +6,8 @@
         from temperature;
     </select>
     <insert id="add" parameterType="com.example.project.entity.Temperature">
-        insert temperature
-        values (id = #{id}, uid = #{uid}, temp = #{temp}, postTime = #{postTime});
+        insert temperature (uid, temp, postTime)
+        values (#{uid},#{temp},#{postTime});
     </insert>
     <delete id="delete" parameterType="int">
         delete

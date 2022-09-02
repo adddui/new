@@ -6,8 +6,8 @@
         from organ;
     </select>
     <insert id="add" parameterType="com.example.project.entity.Organ">
-        insert organ
-        values (id = #{id}, organName = #{organName}, address = #{address});
+        insert organ (organName, address)
+        values (#{organName}, #{address});
     </insert>
     <delete id="delete" parameterType="int">
         delete
@@ -18,6 +18,11 @@
         select *
         from organ
         where id = #{id};
+    </select>
+    <select id="findOrganByUid" resultType="com.example.project.entity.Organ">
+        select *
+        from organ
+        where id = (select oid from result where uid = #{uid} order by checkTime desc limit 1)
     </select>
     <update id="update" parameterType="com.example.project.entity.Organ">
         update organ

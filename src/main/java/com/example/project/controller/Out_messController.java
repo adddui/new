@@ -41,7 +41,7 @@ public class Out_messController {
     @PostMapping(value = "findOut_messById")
     @ApiOperation("根据id查找Out_mess")
         //根据id查找
-    Out_mess findById(int id) {return outMessService.findById(id);}
+    Out_mess findOut_messById(int id) {return outMessService.findOut_messById(id);}
 
 
     @PostMapping(value = "updateOut_mess")

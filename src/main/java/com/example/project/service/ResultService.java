@@ -19,5 +19,7 @@ public interface ResultService {
     int update(Result result);
 
     //查找数据
-    Result findById(int id);
+    Result findResultById(int id);
+
+    Result findResultByUid(int uid);
 }

@@ -20,12 +20,16 @@ public class ResultController {
 
     @PostMapping(value = "findAllResult")
     @ApiOperation("查找所有Result")
-    List<Result> findAll() {return resultService.findAll();}
+    List<Result> findAll() {
+        return resultService.findAll();
+    }
 
     @PostMapping(value = "addResult")
     @ApiOperation("新增Result数据")
         //新增数据
-    int add(Result result) {return resultService.add(result);}
+    int add(Result result) {
+        return resultService.add(result);
+    }
 
     @PostMapping(value = "deleteResult")
     @ApiOperation("删除Result数据")
@@ -37,11 +41,21 @@ public class ResultController {
     @PostMapping(value = "findResultById")
     @ApiOperation("根据id查找Result")
         //根据id查找
-    Result findById(int id) {return resultService.findById(id);}
+    Result findResultById(int id) {
+        return resultService.findResultById(id);
+    }
 
+    @PostMapping(value = "findResultByUid")
+    @ApiOperation("根据id查找Result")
+        //根据id查找
+    Result findResultByUid(int uid) {
+        return resultService.findResultByUid(uid);
+    }
 
     @PostMapping(value = "updateResult")
     @ApiOperation("更新Result数据")
         //更新数据
-    int update(Result result) {return resultService.update(result);}
+    int update(Result result) {
+        return resultService.update(result);
+    }
 }

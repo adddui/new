@@ -21,5 +21,5 @@ public interface Return_messService {
     int update(Return_mess return_mess);
 
     //查找数据
-    Return_mess findById(int id);
+    Return_mess findReturn_messById(int id);
 }

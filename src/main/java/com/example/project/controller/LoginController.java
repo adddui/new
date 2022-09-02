@@ -1,6 +1,7 @@
 package com.example.project.controller;
-import com.example.project.dao.UserDAO;
+
 import com.example.project.entity.User;
+import com.example.project.service.UserDAOServiceImpl;
 import com.example.project.utils.JWTUtil;
 import com.example.project.utils.MD5Util;
 import com.example.project.utils.RedisUtil;
@@ -13,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 public class LoginController {
     @Autowired
-    private UserDAO userDao;
+    private UserDAOServiceImpl userDAOService;
     @Autowired
     private RedisUtil redisUtil;
 
@@ -31,19 +33,21 @@ public class LoginController {
     @RequestMapping(value = "login")
     @ResponseBody
     @ApiOperation("登录")
-    public String login(HttpServletResponse response, @RequestParam("username") String username, @RequestParam("password") String password, String validateCode, @RequestHeader String validateKey) {
+    public String login(HttpServletResponse response,@RequestParam("password") String password, String validateCode, @RequestHeader String validateKey,@RequestParam String account) throws IOException {
         //验证码匹配
         String validateCodeRedis = (String) redisUtil.get(validateKey);
         if (validateCodeRedis.equals(validateCode)) {
             //查找用户
-            userDao.findUserByName(username);
-            User users = userDao.findUserByName(username);
-            if (users != null) {
-                String salt = users.getSalt();
+            userDAOService.findUserByAccount(account);
+            User user = userDAOService.findUserByAccount(account);
+            if (user != null) {
+                //查找成功
+                String salt = user.getSalt();
                 String finalPassword = MD5Util.formPassToDBPass(password, salt);
-                if (finalPassword.equals(users.getPassword())) {
-                    String token = JWTUtil.sign(users.getName(), users.getPassword());
+                if (finalPassword.equals(user.getPassword())) {
+                    String token = JWTUtil.sign(user.getAccount(), user.getPassword());
                     response.setHeader("token", token);
+                    response.sendRedirect("index.html");
                     return "登陆成功";
                 } else {
                     return "密码错误";

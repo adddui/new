@@ -44,6 +44,13 @@ public class OrganController {
         return organDaoService.findOrganById(id);
     }
 
+    @PostMapping(value = "findOrganByUid")
+    @ApiOperation("根据uid查找Organ")
+        //根据id查找
+    Organ findOrganByUid(int uid) {
+        return organDaoService.findOrganByUid(uid);
+    }
+
     @PostMapping(value = "updateOrgan")
     @ApiOperation("更新数据Organ")
         //更新数据
