@@ -5,9 +5,12 @@ import com.example.project.service.UserDAOServiceImpl;
 import com.example.project.utils.JWTUtil;
 import com.example.project.utils.MD5Util;
 import com.example.project.utils.RedisUtil;
+
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Controller
+@Api
 public class LoginController {
     @Autowired
     private UserDAOServiceImpl userDAOService;
@@ -33,11 +38,20 @@ public class LoginController {
     @RequestMapping(value = "login")
     @ResponseBody
     @ApiOperation("登录")
-    public String login(HttpServletResponse response,@RequestParam("password") String password, String validateCode, @RequestHeader String validateKey,@RequestParam String account) throws IOException {
+    public String login(HttpServletResponse response,@RequestBody HashMap<String, String> map) throws IOException {
+        // 取得参数
+        String password = map.get("password");
+        String validateCode = map.get("validateCode");
+        String validateKey = map.get("validateKey");
+        String account = map.get("account");
+        System.out.println(password+"~"+validateCode+"~"+validateKey+"~"+account);
         //验证码匹配
         String validateCodeRedis = (String) redisUtil.get(validateKey);
+
         if (validateCodeRedis.equals(validateCode)) {
             //查找用户
+        System.out.println("haihaihai");
+
             userDAOService.findUserByAccount(account);
             User user = userDAOService.findUserByAccount(account);
             if (user != null) {
@@ -46,8 +60,9 @@ public class LoginController {
                 String finalPassword = MD5Util.formPassToDBPass(password, salt);
                 if (finalPassword.equals(user.getPassword())) {
                     String token = JWTUtil.sign(user.getAccount(), user.getPassword());
+                    System.out.println("token:"+token);
                     response.setHeader("token", token);
-                    response.sendRedirect("index.html");
+                    // response.sendRedirect("index.html");
                     return "登陆成功";
                 } else {
                     return "密码错误";
