@@ -32,8 +32,6 @@ public class RegisterController {
         String name = map.get("name");
         String password = map.get("password");
         String account = map.get("account");
-        
-        System.out.println(name+"!"+password+"!"+account);
         if(userDAOService.findExistByAccount(account) != null) {
             return "account已存在";
         }else {

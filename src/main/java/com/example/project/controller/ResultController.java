@@ -48,7 +48,7 @@ public class ResultController {
     }
 
     @PostMapping(value = "findResultByUid")
-    @ApiOperation("根据id查找Result")
+    @ApiOperation("根据uid查找Result")
         //根据id查找
     Result findResultByUid(int uid) {
         return resultService.findResultByUid(uid);

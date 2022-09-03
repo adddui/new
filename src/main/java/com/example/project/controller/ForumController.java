@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class ForumController {
     @Autowired
     ForumDaoServiceImpl forumDaoService;
 
-    @PostMapping(value = "findAllForum")
+    @RequestMapping(value = "findAllForum")
     @ResponseBody
     @ApiOperation("查找所有Forum")
     List<Forum> findAll() {

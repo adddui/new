@@ -1,70 +1,45 @@
 package com.example.project.utils;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
-import java.util.Date;
-
-import static sun.security.x509.X509CertImpl.SIGNATURE;
+import java.util.Calendar;
+import java.util.Map;
 
 /**
  * 生成token和验证token
  */
 public class JWTUtil {
-
-    //有效时间
-    private static final long EXP = 6*60*60*1000;
-
-    //jwt的签发：token：用户名、每个用户有个自己的密钥（用户的秘密）
-    //token是使用用户名+用户密码来生成
-
-    public static String sign(String account,String password){
-        Date date = new Date(System.currentTimeMillis()+EXP);//过期时间
-        Algorithm algorithm = Algorithm.HMAC384(password);
-        //附带username
-        return JWT.create()
-                .withClaim("account",account)
-                .withClaim("password",password)
-                .withExpiresAt(date)
-                .sign(algorithm);
-
+    private static final String SIGNATURE = "jokennnn!@#$%^7890";
+    /**
+     * 生成token
+     * @param map //传入payload
+     * @return 返回token
+     */
+    public static String getToken(Map<String,String> map){
+        JWTCreator.Builder builder = JWT.create();
+        map.forEach((k,v)-> builder.withClaim(k,v));
+        Calendar instance = Calendar.getInstance();
+        instance.add(Calendar.HOUR,7);
+        builder.withExpiresAt(instance.getTime());
+        return builder.sign(Algorithm.HMAC256(SIGNATURE)).toString();
     }
 
-    //验证当前token是否有效
-    public static boolean verify(String token,String account,String password){
-        Algorithm algorithm = Algorithm.HMAC384(password);
-        JWTVerifier verifier = JWT.require(algorithm)
-                .withClaim("account",account).build();
-
-        //验证:验证不通过会抛出异常
-        DecodedJWT verify = verifier.verify(token);
-        return true;
+    /**
+     * 获取token中payload
+     * @param token
+     * @return
+     */
+    public static DecodedJWT getToken(String token){
+        return JWT.require(Algorithm.HMAC256(SIGNATURE)).build().verify(token);
     }
 
-    //从token中能够提取出账户
-    public static String getUserAccount(String token){
-        DecodedJWT decode = JWT.decode(token);
-        return decode.getClaim("account").asString();
-    }
-    //从token中能够提取出用户名
-    public static String getUserPassword(String token){
-        DecodedJWT decode = JWT.decode(token);
-        return decode.getClaim("password").asString();
-    }
-    //能够判断当前token是否过期
-    public static boolean isExpire(String token){
-        DecodedJWT decode = JWT.decode(token);
-        return System.currentTimeMillis() >= decode.getExpiresAt().getTime();
-    }
-
-    public static void main(String[] args) {
-        String token = sign("admin","e10adc3949bew3fwa59abbe5ffe7f20f88414");
-        System.out.println(token);
-    }
-
-
+    /**
+     * 验证token
+     * @param token
+     */
     public static void verify(String token) {
         JWT.require(Algorithm.HMAC256(SIGNATURE)).build().verify(token);
     }

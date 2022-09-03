@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /*
- *Token拦截器
+ *JWT Token拦截器
  */
 public class JWTInterceptor implements HandlerInterceptor {
     @Override

@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Api
@@ -50,8 +52,6 @@ public class LoginController {
 
         if (validateCodeRedis.equals(validateCode)) {
             //查找用户
-        System.out.println("haihaihai");
-
             userDAOService.findUserByAccount(account);
             User user = userDAOService.findUserByAccount(account);
             if (user != null) {
@@ -59,7 +59,10 @@ public class LoginController {
                 String salt = user.getSalt();
                 String finalPassword = MD5Util.formPassToDBPass(password, salt);
                 if (finalPassword.equals(user.getPassword())) {
-                    String token = JWTUtil.sign(user.getAccount(), user.getPassword());
+                    Map<String,String> payload=new HashMap<>();
+                    payload.put("account",account);
+                    payload.put("password",password);
+                    String token = JWTUtil.getToken(payload);
                     System.out.println("token:"+token);
                     response.setHeader("token", token);
                     // response.sendRedirect("index.html");
