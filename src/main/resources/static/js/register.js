@@ -1,89 +1,78 @@
-refresh()
-
-function refresh() {
-    $.ajax({
-        url: "kaptcha",
-        success: function(data, status, xmlhttp) {
-            //data代表的是验证码
-            $("#captcha").attr("src", data.captcha);
-            //xmlhttp存储了validatekey
-            var validateKey = xmlhttp.getResponseHeader("validateKey");
-            //后续这个validateKey还要使用，把可以放入页面的缓存
-            localStorage.setItem("validateKey", validateKey);
-        }
-    })
-}
-
-$("input[type='button']").on('click', function() {
-    var originPassword = $("input[name='password']").val(); //123456
-    //使用md5加密把原始密码处理后再传递给后台
-    var password = hex_md5(originPassword); //第一次加密，传递给后台的是加密后的密码
-
-    var username = $("input[name='username']").val();
-
-    var validateCode = $("input[name='validateCode']").val();
-    //得到用户标识
-    var validateKey = localStorage.getItem("validateKey")
-
-    $.ajax({
-        url: "login",
-        headers: { "validateKey": validateKey },
-        data: { "password": password, "username": username, "validateCode": validateCode },
-        method: 'POST',
-        success: function(data, status, xmlhttp) {
-            alert(data);
-        }
-    })
-})
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 var vm = new Vue({
     el: '#login',
     data: {
-        username: '',
+        // 显示控制
+        login_show: true,
+        retry_show: false,
+        account: '',
+        // 原密码
+        origin_password: '',
+        // 加密后的密码
         password: '',
         validate_code: '',
         register_status: '注册',
+        returnLogin: '注册成功! 点击返回登录',
         comfirm_password: '',
         nick_name: '',
-        url: '', //这里放请求的目标地址
+        url: 'register', //这里放请求的目标地址
     },
     methods: {
+        // 加密密码
+        encrypt: function() {
+            this.password = hex_md5(this.origin_password);
+            console.log("encrypt:" + this.password);
+        },
 
         // 检查输入合法性
         check: function() {
-            if (this.username === '') {
-                alert("用户名不能为空！");
+            if (this.account === '') {
+                alert("账户不能为空！");
                 return false;
-            } else if (this.password === '') {
+            } else if (this.origin_password === '') {
                 alert("密码不能为空！");
-                return false;
-            } else if (this.validateCode === '') {
-                alert("验证码不能为空！");
                 return false;
             } else if (this.comfirm_password === '') {
                 alert("请确认密码！");
                 return false;
+            } else if (this.origin_password != this.comfirm_password) {
+                alert("两次输入的密码不一致!");
+                return false;
             } else if (this.nick_name === '') {
-                this.nick_name = this.username;
-                return true;
+                alert("昵称不能为空！");
+                return false;
             }
+            // 加密密码
+            this.encrypt();
             return true;
         },
-        //登录
+        //注册
         register: function() {
             // 检查输入
             if (this.check() === true) {
-                //登录
+                //注册
+                var that = this;
                 axios.post(this.url, {
-                    username: this.username,
-                    password: this.password,
-                    nick_name: this.nick_name,
-                }).then(res => function(res) {
-                    if (res.data.status == 'true') {
-                        this.login_status = '注册成功！';
-                    } else if (res.status.status == 1) {
-                        this.login_status = '用户已存在！';
+                    // 给接口的参数
+                    // 昵称
+                    name: that.nick_name,
+                    // 密码
+                    password: that.password,
+                    // 账户
+                    account: that.account,
+                }).then(function(res) {
+                    if (res.data === "account已存在") {
+                        alert("账户已存在，请重试！");
+                        return false;
+                    } else if (res.data === "注册成功") {
+                        console.log(res.data);
+                        // 注册成功后显示点击返回登陆按钮
+                        that.login_show = !that.login_show;
                     }
+
+                }).catch(function() {
+                    console.log(that.nick_name + "~" + that.origin_password + "~" + that.account)
                 })
             }
         }

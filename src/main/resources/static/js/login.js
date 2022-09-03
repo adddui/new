@@ -1,70 +1,55 @@
-// import axios from "./axios";
-
-refresh()
-
-function refresh() {
-    $.ajax({
-        url: "kaptcha",
-        success: function(data, status, xmlhttp) {
-            //data代表的是验证码
-            $("#captcha").attr("src", data.captcha);
-            //xmlhttp存储了validatekey
-            var validateKey = xmlhttp.getResponseHeader("validateKey");
-            //后续这个validateKey还要使用，把可以放入页面的缓存
-            localStorage.setItem("validateKey", validateKey);
-        }
-    })
-}
-
-$("input[type='button']").on('click', function() {
-    var originPassword = $("input[name='password']").val(); //123456
-    //使用md5加密把原始密码处理后再传递给后台
-    var password = hex_md5(originPassword); //第一次加密，传递给后台的是加密后的密码
-
-    var username = $("input[name='username']").val();
-
-    var validateCode = $("input[name='validateCode']").val();
-    //得到用户标识
-    var validateKey = localStorage.getItem("validateKey")
-
-    $.ajax({
-        url: "login",
-        headers: { "validateKey": validateKey },
-        data: { "password": password, "username": username, "validateCode": validateCode },
-        method: 'POST',
-        success: function(data, status, xmlhttp) {
-            alert(data);
-        }
-    })
-});
-
-
 var vm = new Vue({
     el: '#login',
     data: {
-        username: '',
-        origin_password: '',//原始密码
-        // password: hex_md5(this.origin_password),//第一次加密
+        account: '',
+        //原始密码
+        origin_password: '',
+        // 取得上边存储的加密过后的密码
+        password: '',
+        // 验证码
         validateCode: '',
-        validateKey: localStorage.getItem("validateKey"),//取得用户标识
+        //取得用户标识
+        validateKey: localStorage.validateKey,
+        // 这个用处不大，仅是按钮值
         login_status: '登录',
+
+        // 验证码地址
+        src: '',
         user_id: '',
-        url: 'login', //这里存放请求的目标地址
+        //这里存放请求的目标地址
+        url: 'login',
+        code_url: 'kaptcha',
     },
     methods: {
+        // 加密密码
+        encrypt: function() {
+            this.password = hex_md5(this.origin_password);
+            console.log("encrypt:" + this.password);
+        },
 
+        // 刷新验证码
+        refresh: function() {
+            var that = this;
+            axios.get(this.code_url).then(function(res) {
+                that.src = res.data.captcha;
+                that.validateKey = res.headers.validatekey;
+                localStorage.setItem("validateKey", that.validateKey);
+            })
+        },
         // 检查输入合法性
         check: function() {
             if (this.username === '') {
                 alert("用户名不能为空！");
                 return false;
-            } else if (this.password === '') {
+            } else if (this.origin_password === '') {
                 alert("密码不能为空！");
                 return false;
             } else if (this.validateCode === '') {
                 alert("验证码不能为空！");
                 return false;
             }
+            // 加密密码
+            this.encrypt();
             return true;
         },
         //登录
@@ -72,24 +57,37 @@ var vm = new Vue({
             // 检查输入
             if (this.check() === true) {
                 //登录
+                var that = this;
                 axios.post(this.url, {
-                    username: this.username,
-                    password: this.origin_password,
-                    validateCode:this.validateCode,
+                    // 存放请求携带的参数
+                    password: that.password,
+                    validateCode: that.validateCode,
+                    validateKey: that.validateKey,
+                    account: that.account
                 }).then(function(res) {
-                    console.log(res)
-                    // if (res.data.status == 'true') {
-                    //     this.login_status = '登陆成功！';
-                    //     // 将返回的数据存入
-                    //     sessionStorage.obj = JSON.stringify(res);
-                    //     window.location.href = "index.html";
-                    // } else if (res.status.status == 1) {
-                    //     this.login_status = '用户名或密码错误！';
-                    // } else if (res.data.status == 2) {
-                    //     this.login_status = '用户不存在！';
-                    // }
+                    // 请求成功
+                    if (res.data === "密码错误") {
+                        alert("密码错误！请重试！");
+                        return false;
+                    } else if (res.data === "用户名无") {
+                        alert("账户不存在！请去注册！");
+                        return false;
+                    } else if (res.data === "验证码错误") {
+                        alert("验证码错误！请重新输入！");
+                        return false;
+                    } else {
+                        // 后端应该发回前端一个token，前端存储，
+                        // 在其他页面请求时，将token放入请求头
+                        localStorage.setItem("token", res.headers);
+                        // 跳转
+                        window.open('index.html', '_self');
+                    }
+
                 })
             }
         }
+    },
+    mounted() {
+        this.refresh();
     },
 })

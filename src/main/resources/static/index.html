@@ -30,7 +30,7 @@
 
         <div class="main-info" id="main_info">
             <div class="main-info-result-box" v-show="is_result_show">
-                <img src="./img/code.png" alt="健康码" class="code">
+                <img :src="src" alt="健康码" class="code">
                 <div class="result">
                     <!-- 核酸检测结果 -->
                     <div class="hesuan" @click="show_result">核酸检测结果</div>

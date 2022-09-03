@@ -8,34 +8,9 @@ var vm = new Vue({
             post_title: '',
             post_content: '',
             uid: '',
-            url: '',
+            url: 'findAllForum',
             //帖子
-            posts: [
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-                { title: '今日新增病例', author: '社区官方', time: '2022-8-31', },
-            ],
+            posts: [],
         },
         methods: {
             // 显示控制
@@ -65,7 +40,7 @@ var vm = new Vue({
                     uid: this.uid,
                     title: this.post_title,
                     content: this.post_content,
-                }).then(res => function() {
+                }).then(function(res) {
                     if (res.status >= 200 && res.status < 300) {
                         alert("发布成功！");
                         this.show_edit();
@@ -77,13 +52,24 @@ var vm = new Vue({
 
             //获取帖子
             get_post: function() {
-                axios.post(this.url).then(res => function() {
+                var that = this;
+                axios.post(this.url, {
+                    id: 1,
+                }, {
+                    headers: {
+                        'token': localStorage.getItem("token"),
+                    }
+                }).then(function(res) {
                     // 将取得的数据存入数组
-                    this.posts.push(res.data.result);
+                    that.posts = res.data;
                 })
             },
 
         },
+
+        mounted() {
+            this.get_post();
+        }
     }
 
 )
