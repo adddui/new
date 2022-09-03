@@ -38,4 +38,9 @@ public class Out_messServiceImpl implements Out_messService {
     public Out_mess findOut_messById(int id) {
         return outmessDao.findOut_messById(id);
     }
+
+    @Override
+    public Out_mess findOut_messByUid(int uid) {
+        return outmessDao.findOut_messByUid(uid);
+    }
 }

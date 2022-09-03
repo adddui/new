@@ -35,4 +35,9 @@ public class ForumDaoServiceImpl implements ForumDaoService{
     public int update(Forum forum) {
         return forumDao.update(forum);
     }
+
+    @Override
+    public Forum findForumByUid(int uid) {
+        return forumDao.findForumByUid(uid);
+    }
 }

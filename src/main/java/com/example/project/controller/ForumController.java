@@ -5,16 +5,15 @@ import com.example.project.service.ForumDaoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@RequestMapping("authority")
 @Api
 public class ForumController {
     @Autowired
@@ -49,13 +48,13 @@ public class ForumController {
         return forumDaoService.delete(id);
     }
 
-    @PostMapping(value = "findForumById")
-    @ApiOperation("根据id查找Forum")
-        //根据id查找
-    Forum findUserById(int id) {
-        return forumDaoService.findForumById(id);
+    @PostMapping(value = "findForumByUid")
+    @ApiOperation("根据uid查找Forum")
+        //根据Uid查找该用户所发的论坛
+    Forum findUserByUid(@RequestBody HashMap<String, String> map) {
+        int uid=Integer.parseInt(map.get("uid"));
+        return forumDaoService.findForumByUid(uid);
     }
-
     @PostMapping(value = "updateForum")
     @ApiOperation("更新Forum数据")
         //更新数据

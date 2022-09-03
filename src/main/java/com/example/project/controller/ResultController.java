@@ -7,13 +7,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
+@RequestMapping("authority")
 @Api
 public class ResultController {
     @Autowired
@@ -28,29 +31,37 @@ public class ResultController {
     @PostMapping(value = "addResult")
     @ApiOperation("新增Result数据")
         //新增数据
-    int add(int uid, String resultStatus, Date sampleTime, int oid, Date checkTime) {
+    int add(@RequestBody HashMap<String, String> map) {
+        int uid=Integer.parseInt(map.get("uid"));
+        String resultStatus=map.get("resultStatus");//核酸阴阳性
+        Date sampleTime=Date.valueOf(map.get("sampleTime"));//采样时间
+        int oid=Integer.parseInt(map.get("oid"));
+        Date checkTime=Date.valueOf(map.get("checkTime"));//检查时间
         Result result=new Result(uid,resultStatus,sampleTime,oid,checkTime);
         return resultService.add(result);
     }
 
-    @PostMapping(value = "deleteResult")
-    @ApiOperation("删除Result数据")
+    @PostMapping(value = "deleteResultById")
+    @ApiOperation("删除Result数据ById")
         //删除数据
-    int delete(int id) {
+    int delete(@RequestBody HashMap<String, String> map) {
+        int id=Integer.parseInt(map.get("id"));
         return resultService.delete(id);
     }
 
     @PostMapping(value = "findResultById")
     @ApiOperation("根据id查找Result")
         //根据id查找
-    Result findResultById(int id) {
+    Result findResultById(@RequestBody HashMap<String, String> map) {
+        int id=Integer.parseInt(map.get("id"));
         return resultService.findResultById(id);
     }
 
     @PostMapping(value = "findResultByUid")
     @ApiOperation("根据uid查找Result")
         //根据id查找
-    Result findResultByUid(int uid) {
+    Result findResultByUid(@RequestBody HashMap<String, String> map) {
+        int uid=Integer.parseInt(map.get("uid"));
         return resultService.findResultByUid(uid);
     }
 

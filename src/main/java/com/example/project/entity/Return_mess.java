@@ -1,13 +1,11 @@
 package com.example.project.entity;
 
 
-import jdk.jfr.internal.StringPool;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Data
 @AllArgsConstructor

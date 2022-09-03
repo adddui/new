@@ -21,4 +21,6 @@ public interface Return_messDao {
 
     //查找数据
     Return_mess findReturn_messById(int id);
+
+    Return_mess findReturn_messByUid(int uid);
 }

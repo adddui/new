@@ -5,20 +5,16 @@ import com.example.project.service.UserDAOServiceImpl;
 import com.example.project.utils.JWTUtil;
 import com.example.project.utils.MD5Util;
 import com.example.project.utils.RedisUtil;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,6 +58,7 @@ public class LoginController {
                     Map<String,String> payload=new HashMap<>();
                     payload.put("account",account);
                     payload.put("password",password);
+                    payload.put("uid",String.valueOf(user.getId()));
                     String token = JWTUtil.getToken(payload);
                     System.out.println("token:"+token);
                     response.setHeader("token", token);

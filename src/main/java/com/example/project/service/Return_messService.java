@@ -1,7 +1,6 @@
 package com.example.project.service;
 
 
-
 import com.example.project.entity.Return_mess;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +21,6 @@ public interface Return_messService {
 
     //查找数据
     Return_mess findReturn_messById(int id);
+
+    Return_mess findReturn_messByUid(int uid);
 }

@@ -20,4 +20,6 @@ public interface Out_messDao {
 
     //查找数据
     Out_mess findOut_messById(int id);
+
+    Out_mess findOut_messByUid(int uid);
 }

@@ -22,4 +22,6 @@ public interface ForumDaoService {
 
     //更新数据
     int update(Forum forum);
+
+    Forum findForumByUid(int uid);
 }

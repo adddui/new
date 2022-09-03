@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("Return_messServiceImpl")
-public class Return_messServiceImpl implements Return_messService{
+public class Return_messServiceImpl implements Return_messService {
     @Autowired
     Return_messDao return_messDao;
 
@@ -37,4 +37,9 @@ public class Return_messServiceImpl implements Return_messService{
     public Return_mess findReturn_messById(int id) {
         return return_messDao.findReturn_messById(id);
     }
+
+    public Return_mess findReturn_messByUid(int uid){
+        return return_messDao.findReturn_messByUid(uid);
+    }
+
 }

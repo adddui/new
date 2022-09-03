@@ -21,4 +21,6 @@ public interface Out_messService {
 
     //查找数据
     Out_mess findOut_messById(int id);
+
+    Out_mess findOut_messByUid(int uid);
 }
