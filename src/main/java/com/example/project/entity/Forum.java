@@ -3,6 +3,8 @@ package com.example.project.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Timestamp;
 
 @Data
@@ -10,6 +12,7 @@ import java.sql.Timestamp;
 public class Forum {
     private int id;
     private int builder;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT-8" )
     private Timestamp sendTime;
     private String message;
     private String title;

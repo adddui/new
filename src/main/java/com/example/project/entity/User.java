@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 @Data
 @NoArgsConstructor
 public class User {
@@ -14,6 +14,7 @@ public class User {
     private String password;
     private String salt;
     private String account;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT-8" )
     private Date lastTime;
     private String idcard;
 
