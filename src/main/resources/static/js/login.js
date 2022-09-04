@@ -78,8 +78,10 @@ var vm = new Vue({
                     } else {
                         // 后端应该发回前端一个token，前端存储，
                         // 在其他页面请求时，将token放入请求头
-                        localStorage.setItem("token", res.headers);
-                        // 跳转
+                        localStorage.token = res.headers.token;
+                        // 将获取到的uid存入缓存捏
+                        localStorage.uid = res.headers.uid;
+                        // 本窗口跳转
                         window.open('index.html', '_self');
                     }
 

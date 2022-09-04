@@ -28,8 +28,8 @@ public class TemperatureDaoServiceImpl implements TemperatureDaoService {
     }
 
     @Override
-    public Temperature findTemperatureByUid(int uid) {
-        return temperatureDao.findTemperatureByUid(uid);
+    public Temperature findTemperatureById(int id) {
+        return temperatureDao.findTemperatureById(id);
     }
 
     @Override

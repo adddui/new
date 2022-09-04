@@ -29,7 +29,12 @@ public class ForumController {
     @PostMapping(value = "addForum")
     @ApiOperation("新增Forum数据")
         //新增数据
-    int add(int builder, String message, String title) {
+    int add(@RequestBody HashMap <String,String> map) {
+
+        int builder = Integer.parseInt(map.get("builder"));
+        String message = map.get("message");
+        String title = map.get("title");
+
         Timestamp timestamp=new Timestamp(Calendar.getInstance().get(
                 Calendar.YEAR) - 1900, Calendar.getInstance().get(
                 Calendar.MONTH), Calendar.getInstance().get(
@@ -37,7 +42,7 @@ public class ForumController {
                 Calendar.HOUR), Calendar.getInstance().get(
                 Calendar.MINUTE), Calendar.getInstance().get(
                 Calendar.SECOND), 0);
-        Forum forum=new Forum(builder,timestamp,message,title);
+        Forum forum = new Forum(builder,timestamp,message,title);
         return forumDaoService.add(forum);
     }
 

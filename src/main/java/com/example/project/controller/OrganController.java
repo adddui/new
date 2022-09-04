@@ -6,9 +6,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -40,14 +42,18 @@ public class OrganController {
     @PostMapping(value = "findOrganById")
     @ApiOperation("根据id查找Organ")
         //根据id查找
-    Organ findUserById(int id) {
+    Organ findUserById(@RequestBody HashMap <String, String> map) {
+        int id = Integer.parseInt(map.get("id"));
+        System.out.println("Organ_uid: "+id);
+
         return organDaoService.findOrganById(id);
     }
 
     @PostMapping(value = "findOrganByUid")
     @ApiOperation("根据uid查找Organ")
         //根据id查找
-    Organ findOrganByUid(int uid) {
+    Organ findOrganByUid(@RequestBody HashMap <String, String> map) {
+        int uid = Integer.parseInt(map.get("uid"));
         return organDaoService.findOrganByUid(uid);
     }
 

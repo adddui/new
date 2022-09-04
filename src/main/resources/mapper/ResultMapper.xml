@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.project.dao.ResultDao">
+    <!--
+       namespace：对应的dao接口的全路径
+       id：接口中的方法名
+       parameterType：输入参数的类型
+       resultType：查询返回的类型
+    -->
+    <select id="findAll" resultType="com.example.project.entity.Result">
+        select *
+        from result;
+    </select>
+
+    <insert id="add" parameterType="com.example.project.entity.Result">
+        insert into result(uid, resultStatus, sampleTime, oid, checkTime)
+        values (#{uid},
+                #{resultStatus},
+                #{sampleTime},
+                #{oid},
+                #{checkTime});
+    </insert>
+
+    <delete id="delete">
+        delete
+        from result
+        where id = #{id};
+    </delete>
+    <update id="update" parameterType="com.example.project.entity.Result">
+        update result
+        set uid=#{uid},
+            resultStatus=#{resultStatus},
+            sampleTime=#{sampleTime},
+            oid=#{oid},
+            checkTime=#{checkTime}
+        where id = #{id};
+    </update>
+
+    <select id="findResultById" resultType="com.example.project.entity.Result">
+        select *
+        from result
+        where id = #{id};
+    </select>
+    <select id="findResultByUid" resultType="com.example.project.entity.Result">
+        select * from result where uid=#{uid} order by checkTime desc limit 1
+    </select>
+</mapper>

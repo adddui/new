@@ -59,7 +59,7 @@ public class UserController {
     @ApiOperation("根据id查找User")
         //根据id查找
     User findUserById(@RequestBody HashMap<String, String> map) {
-        int id = Integer.parseInt(map.get("id"));
+        int id = Integer.parseInt(map.get("uid"));
         return userDAOService.findUserById(id);
     }
 

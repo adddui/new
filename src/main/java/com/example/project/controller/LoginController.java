@@ -60,8 +60,10 @@ public class LoginController {
                     payload.put("password",password);
                     payload.put("uid",String.valueOf(user.getId()));
                     String token = JWTUtil.getToken(payload);
-                    System.out.println("token:"+token);
+                    // System.out.println("token:"+token);
                     response.setHeader("token", token);
+                    //这是 郑 加的
+                    response.setHeader("uid", String.valueOf(user.getId()));
                     // response.sendRedirect("index.html");
                     return "登陆成功";
                 } else {

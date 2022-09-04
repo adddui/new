@@ -39,8 +39,8 @@
                 </div>
                 <!-- 个人信息 -->
                 <div class="info-box">
-                    <h2 id="true-name">{{true_name}}</h2>
-                    <span id="id">{{id_num}}</span>
+                    <h2 id="true-name">{{ name }}</h2>
+                    <span id="id" :style="style">{{ level }}</span>
                 </div>
             </div>
             <!-- 核酸检测结果详情 -->
@@ -50,14 +50,16 @@
                         <h3>核酸检测结果查询</h3>
                     </caption>
                     <tr class="table_header">
+                        <th>采样日期</th>
                         <th>检测日期</th>
                         <th>检测机构</th>
                         <th>检测结果</th>
                     </tr>
-                    <tr v-for="result in hesuan_result">
-                        <td>{{ result.checkTime }}</td>
-                        <td>{{ result.oid }}</td>
-                        <td>{{ result.resultStatus }}</td>
+                    <tr>
+                        <td>{{ sampleTime }}</td>
+                        <td>{{ checkTime }}</td>
+                        <td>{{ organ_name }}</td>
+                        <td>{{ resultStatus }}</td>
                     </tr>
                 </table>
                 <input type="button" value="返回" class="return" @click="show_result">
@@ -69,16 +71,10 @@
                         <h3>风险地区旅居史</h3>
                     </caption>
                     <tr class="table_header">
-                        <th>风险地区</th>
-                        <th>风险等级</th>
-                        <th>到达时间</th>
-                        <th>离开时间</th>
+                        <th>到达过</th>
                     </tr>
-                    <tr v-for="his in history">
-                        <td>{{his.destination}}</td>
-                        <td>{{his.temp}}</td>
-                        <td>{{his.startime}}</td>
-                        <td>{{his.endtime}}</td>
+                    <tr>
+                        <td>{{ history }}</td>
                     </tr>
                 </table>
                 <input type="button" value="返回" class="return" @click="show_history">

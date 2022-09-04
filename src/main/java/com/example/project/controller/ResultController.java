@@ -62,6 +62,8 @@ public class ResultController {
         //根据id查找
     Result findResultByUid(@RequestBody HashMap<String, String> map) {
         int uid=Integer.parseInt(map.get("uid"));
+        System.out.println("uid: "+uid);
+        System.out.println("result: "+resultService.findResultByUid(uid));
         return resultService.findResultByUid(uid);
     }
 

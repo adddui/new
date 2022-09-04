@@ -6,30 +6,32 @@ var vm = new Vue({
         is_result_info_show: false,
         is_history_show: false,
         //绑定参数
-        true_name: '张三', //真实姓名
-        id_num: '510000000000000000', //身份证号
-        //存放请求目标地址
-        hesuan_result_url: 'findResultById',
-        history_url: 'findAllReturn_mess',
-        notice_url: 'findAllNotice',
-        true_info_url: 'findUserByName',
-        src: './img/code.png',
+        name: '张三', // 昵称
+        // 这个是健康码的图捏
+        src: './img/green.png',
 
         // 存一下token捏
         token: localStorage.token,
+        // 存一下uid捏
+        uid: localStorage.uid,
         //核酸结果暂存
-        hesuan_result: [],
+        sampleTime: '',
+        checkTime: '',
+        oid: '',
+        organ_name: '',
+        resultStatus: '',
         //风险地旅居史
-        history: [],
+        history: '',
         //公告
         notice: [],
-        //身份信息
-        id_info: [],
+        // 风险等级
+        level: '健康状态...',
+        // 样式
+        style: 'color:grey',
     },
     methods: {
         // 控制左边部分显示什么
         show_result: function() {
-            this.get_hesuan_check_result();
             if (this.is_result_info_show === true) {
                 this.is_result_show = true;
                 this.is_history_show = false;
@@ -40,11 +42,8 @@ var vm = new Vue({
                 this.is_history_show = false;
                 this.is_result_info_show = true;
             }
-
-
         },
         show_history: function() {
-            this.get_history();
             if (this.is_history_show === true) {
                 this.is_result_info_show = false;
                 this.is_result_show = true;
@@ -56,97 +55,93 @@ var vm = new Vue({
             }
         },
 
-
         // 获取核酸检测结果
         get_hesuan_check_result: function() {
             let that = this;
-            axios.post(this.hesuan_result_url, {
-                // id:1,
-                token: that.token,
-
-            }).then(function(res) {
-                // 将获取到的数据进行操作
-                // console.log(response.data);
-
-                for (var i = 0; i <= 8; i++) {
-                    // 将结果放到数组里面，少放点
-                    // console.log(res);
-                    that.hesuan_result = res.data;
+            axios.post('authority/findResultByUid', {
+                // 携带的参数
+                uid: that.uid,
+            }, {
+                headers: {
+                    token: that.token
                 }
+            }).then(function(res) {
                 // 打印一下看看咯
-                // console.log(that.hesuan_result);
+                // 存储查询结果
+                // 采样时间
+                that.sampleTime = res.data.sampleTime;
+                // 检查时间
+                that.checkTime = res.data.checkTime;
+                // 检查机构
+                that.oid = res.data.oid;
+                that.get_organ_name();
+                // 检测结果
+                that.resultStatus = res.data.resultStatus;
+
+                if (that.resultStatus === '阴') {
+                    that.level = '绿码: 健康状态为低风险';
+                    that.style = 'color:green;font-weight:bold;font-size:15px';
+                    that.src = './img/green.png';
+                } else if (that.resultStatus === '阳') {
+                    that.level = '红码: 健康状态为高风险';
+                    that.style = 'color:red;font-weight:bold;font-size:15px';
+                    that.src = './img/red.png';
+                }
+            })
+        },
+
+        //根据oid查询机构名称
+        get_organ_name: function() {
+            var that = this;
+            axios.post('findOrganById', {
+                id: that.oid,
+            }, {
+                headers: {
+                    token: this.token
+                }
+            }).then(function(res) {
+                that.organ_name = res.data.organName;
             })
         },
 
         //获取旅居史
         get_history: function() {
             let that = this;
-            axios.post(this.history_url, {
+            axios.post('authority/findUserById', {
                 //给服务器的参数
-                token: that.token,
-
+                uid: that.uid,
+            }, {
+                headers: {
+                    token: that.token
+                }
             }).then(function(res) {
                 //将获取到的数据存入数组
-                for (var i = 0; i < 8; i++) {
-                    that.history = res.data;
-                }
-                console.log(res);
-                // 打印一下试试看
-                console.log(that.history);
+                that.history = res.data.trace;
+                that.name = res.data.name
             })
         },
 
         //获取公告
         get_notice: function() {
             var that = this;
-            axios.post(this.notice_url, {
+            axios.post('findAllNotice', {
                 //给服务器的参数
-                token: that.token,
-
+                uid: that.uid,
+            }, {
+                headers: {
+                    token: that.token
+                }
             }).then(function(res) {
                 //将获取到的数据存入数组
                 for (var i = 0; i < 8; i++) {
                     that.notice = res.data;
                 }
-                // 打印一下试试看
-                // console.log(that.notice);
-            })
-        },
-
-        //获取真实姓名等信息
-
-        get_true_info: function() {
-            // console.log(this.token);
-
-            var that = this;
-            axios.post(this.true_info_url, {
-                //给服务器的参数
-                token: that.token,
-
-                name: 'lisi',
-            }).then(function(res) {
-                //将获取到的数据存入数据
-                that.id_info = res.data;
-                // that.id_num = res.data.idcard;
-                // 打印一下试试看
-                console.log(that.id_info);
-            })
-        },
-
-        //获取基础信息
-        get_result: function() {
-            var that = this;
-            axios.post(this.result_url, {
-                token: that.token,
-
-
-            }).then(function() {
-
             })
         },
     },
     mounted() {
+        this.get_hesuan_check_result();
         this.get_notice();
-        this.get_true_info();
+        this.get_history();
     },
 });
