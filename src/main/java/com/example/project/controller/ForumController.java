@@ -1,6 +1,7 @@
 package com.example.project.controller;
 
 import com.example.project.entity.Forum;
+import com.example.project.entity.ForumVO;
 import com.example.project.service.ForumDaoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -22,7 +23,7 @@ public class ForumController {
     @RequestMapping(value = "findAllForum")
     @ResponseBody
     @ApiOperation("查找所有Forum")
-    List<Forum> findAll() {
+    List<ForumVO> findAll() {
         return forumDaoService.findAll();
     }
 

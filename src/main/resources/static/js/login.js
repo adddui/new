@@ -40,9 +40,11 @@ var vm = new Vue({
         check: function() {
             if (this.username === '') {
                 alert("用户名不能为空！");
+                this.refresh();
                 return false;
             } else if (this.origin_password === '') {
                 alert("密码不能为空！");
+                this.refresh();
                 return false;
             } else if (this.validateCode === '') {
                 alert("验证码不能为空！");
@@ -68,12 +70,15 @@ var vm = new Vue({
                     // 请求成功
                     if (res.data === "密码错误") {
                         alert("密码错误！请重试！");
+                        this.refresh();
                         return false;
                     } else if (res.data === "用户名无") {
                         alert("账户不存在！请去注册！");
+                        this.refresh();
                         return false;
                     } else if (res.data === "验证码错误") {
                         alert("验证码错误！请重新输入！");
+                        this.refresh();
                         return false;
                     } else {
                         // 后端应该发回前端一个token，前端存储，
@@ -84,7 +89,6 @@ var vm = new Vue({
                         // 本窗口跳转
                         window.open('index.html', '_self');
                     }
-
                 })
             }
         }

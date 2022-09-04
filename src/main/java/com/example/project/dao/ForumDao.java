@@ -1,6 +1,7 @@
 package com.example.project.dao;
 
 import com.example.project.entity.Forum;
+import com.example.project.entity.ForumVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ForumDao {
 
-    List<Forum> findAll();
+    List<ForumVO> findAll();
 
     //新增数据
     int add(Forum forum);

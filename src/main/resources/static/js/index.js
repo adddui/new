@@ -28,6 +28,8 @@ var vm = new Vue({
         level: '健康状态...',
         // 样式
         style: 'color:grey',
+        // class
+        detail: 'detail_hidden'
     },
     methods: {
         // 控制左边部分显示什么
@@ -86,6 +88,10 @@ var vm = new Vue({
                     that.level = '红码: 健康状态为高风险';
                     that.style = 'color:red;font-weight:bold;font-size:15px';
                     that.src = './img/red.png';
+                } else if (that.resultStatus === '') {
+                    that.level = "黄码：健康状态为中风险";
+                    that.style = 'color:yellow;font-weight:bold;font-size:15px';
+                    that.src = './img/yellow.png';
                 }
             })
         },
@@ -138,6 +144,18 @@ var vm = new Vue({
                 }
             })
         },
+
+        // 展示详情
+        show_detail: function() {
+            var flag = true;
+            if (flag === true) {
+                this.detail = 'detail_show';
+                flag = !flag;
+            } else {
+                this.detail = 'detail_hidden';
+                flag = !flag;
+            }
+        }
     },
     mounted() {
         this.get_hesuan_check_result();

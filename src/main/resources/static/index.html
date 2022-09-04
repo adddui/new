@@ -86,16 +86,19 @@
                 <ul class="notice">
                     <span class="notice-title">社区公告</span>
                     <li v-for="item in notice">
-                        <div class="notice_info">
+                        <!-- 点击查看详情 -->
+                        <div class="notice_info" @click="show_detail">
                             <div class="notice_info_content">
                                 <h4> {{ item.title }} </h4>
                             </div>
                             <p>{{ item.postTime }}</p>
                         </div>
+                        <div :class="detail">
+                            <p>{{ item.context }}</p>
+                        </div>
                     </li>
                 </ul>
             </div>
-
         </div>
     </div>
     <script src="./js/index.js"></script>

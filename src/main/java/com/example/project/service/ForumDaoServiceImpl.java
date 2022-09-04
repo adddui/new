@@ -2,6 +2,7 @@ package com.example.project.service;
 
 import com.example.project.dao.ForumDao;
 import com.example.project.entity.Forum;
+import com.example.project.entity.ForumVO;
 import com.example.project.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class ForumDaoServiceImpl implements ForumDaoService{
     @Autowired
     ForumDao forumDao;
     @Override
-    public List<Forum> findAll() {
+    public List<ForumVO> findAll() {
         return forumDao.findAll();
     }
 
