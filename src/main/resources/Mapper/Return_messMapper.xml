@@ -40,10 +40,16 @@
         where id = #{id};
     </update>
 
-    <select id="findById" resultType="com.example.project.entity.Return_mess">
+    <select id="findReturn_messById" resultType="com.example.project.entity.Return_mess">
         select *
         from return_mess
         where id = #{id};
+    </select>
+    <select id="findReturn_messByUid" resultType="com.example.project.entity.Return_mess">
+        select *
+        from return_mess
+        where uid= #{uid}
+        order by buildTime desc limit 1;
     </select>
 
 </mapper>

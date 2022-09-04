@@ -19,6 +19,11 @@
         from forum
         where id = #{id};
     </select>
+    <select id="findForumByUid" resultType="com.example.project.entity.Forum">
+        select *
+        from forum
+        where builder = #{uid};
+    </select>
     <update id="update" parameterType="com.example.project.entity.Forum">
         update forum
         set builder=#{builder}, sendTime=#{sendTime},message=#{message}, title=#{title}

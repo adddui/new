@@ -40,10 +40,16 @@
     </delete>
 
 
-    <select id="findById" resultType="com.example.project.entity.Out_mess">
+    <select id="findOut_messById" resultType="com.example.project.entity.Out_mess">
         select *
         from out_mess
         where id = #{id};
+    </select>
+    <select id="findOut_messByUid" resultType="com.example.project.entity.Out_mess">
+        select *
+        from out_mess
+        where uid = #{uid}
+        order by buildTime desc limit 1;
     </select>
 
 </mapper>

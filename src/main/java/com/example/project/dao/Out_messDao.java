@@ -7,7 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface Out_messDao {
-    List<Out_mess>  findAll();
+    List<Out_mess> findAll();
 
     //新增
     int add(Out_mess out_mess);

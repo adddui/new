@@ -14,10 +14,11 @@
         from temperature
         where id = #{id};
     </delete>
-    <select id="findTemperatureById" resultType="com.example.project.entity.Temperature">
+    <select id="findTemperatureByUid" resultType="com.example.project.entity.Temperature">
         select *
         from temperature
-        where id = #{id};
+        where uid = #{uid}
+        order by postTime desc limit 1;
     </select>
     <update id="update" parameterType="com.example.project.entity.Temperature">
         update temperature

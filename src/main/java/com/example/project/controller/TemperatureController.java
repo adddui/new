@@ -49,9 +49,9 @@ public class TemperatureController {
     @PostMapping(value = "findTemperatureById")
     @ApiOperation("根据id查找Temperature")
         //根据id查找
-    Temperature findUserById(@RequestBody HashMap<String, String> map) {
-        int id = Integer.parseInt(map.get("id"));
-        return TemperatureDaoService.findTemperatureById(id);
+    Temperature findUserByUid(@RequestBody HashMap<String, String> map) {
+        int uid = Integer.parseInt(map.get("id"));
+        return TemperatureDaoService.findTemperatureByUid(uid);
     }
 
     @PostMapping(value = "updateTemperature")
