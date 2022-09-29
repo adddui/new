@@ -8,7 +8,7 @@ var vm = new Vue({
         //绑定参数
         name: '张三', // 昵称
         // 这个是健康码的图捏
-        src: './img/green.png',
+        src: './img/yellow.png',
 
         // 存一下token捏
         token: localStorage.token,
@@ -25,15 +25,15 @@ var vm = new Vue({
         //公告
         notice: [],
         // 风险等级
-        level: '健康状态...',
+        level: '黄码：健康状态为中风险',
         // 样式
-        style: 'color:grey',
+        style: 'color:yellow',
         // class
         detail: 'detail_hidden'
     },
     methods: {
         // 控制左边部分显示什么
-        show_result: function() {
+        show_result: function () {
             if (this.is_result_info_show === true) {
                 this.is_result_show = true;
                 this.is_history_show = false;
@@ -45,7 +45,7 @@ var vm = new Vue({
                 this.is_result_info_show = true;
             }
         },
-        show_history: function() {
+        show_history: function () {
             if (this.is_history_show === true) {
                 this.is_result_info_show = false;
                 this.is_result_show = true;
@@ -58,7 +58,7 @@ var vm = new Vue({
         },
 
         // 获取核酸检测结果
-        get_hesuan_check_result: function() {
+        get_hesuan_check_result: function () {
             let that = this;
             axios.post('authority/findResultByUid', {
                 // 携带的参数
@@ -67,7 +67,7 @@ var vm = new Vue({
                 headers: {
                     token: that.token
                 }
-            }).then(function(res) {
+            }).then(function (res) {
                 // 打印一下看看咯
                 // 存储查询结果
                 // 采样时间
@@ -77,9 +77,12 @@ var vm = new Vue({
                 // 检查机构
                 that.oid = res.data.oid;
                 that.get_organ_name();
-                // 检测结果
-                that.resultStatus = res.data.resultStatus;
-
+                if (res.data.resultStatus == null) {
+                    that.resultStatus = "暂未进行核酸检测";
+                } else {
+                    // 检测结果
+                    that.resultStatus = res.data.resultStatus;
+                }
                 if (that.resultStatus === '阴') {
                     that.level = '绿码: 健康状态为低风险';
                     that.style = 'color:green;font-weight:bold;font-size:15px';
@@ -97,7 +100,7 @@ var vm = new Vue({
         },
 
         //根据oid查询机构名称
-        get_organ_name: function() {
+        get_organ_name: function () {
             var that = this;
             axios.post('findOrganById', {
                 id: that.oid,
@@ -105,13 +108,17 @@ var vm = new Vue({
                 headers: {
                     token: this.token
                 }
-            }).then(function(res) {
-                that.organ_name = res.data.organName;
+            }).then(function (res) {
+                if (res == null) {
+                    that.organName = "暂未进行核酸检测";
+                } else {
+                    that.organ_name = res.data.organName;
+                }
             })
         },
 
         //获取旅居史
-        get_history: function() {
+        get_history: function () {
             let that = this;
             axios.post('authority/findUserById', {
                 //给服务器的参数
@@ -120,15 +127,19 @@ var vm = new Vue({
                 headers: {
                     token: that.token
                 }
-            }).then(function(res) {
+            }).then(function (res) {
                 //将获取到的数据存入数组
-                that.history = res.data.trace;
-                that.name = res.data.name
+                if (res.data.trace == null) {
+                    that.history = "暂无风险地旅居史";
+                } else {
+                    that.history = res.data.trace;
+                }
+                that.name = res.data.name;
             })
         },
 
         //获取公告
-        get_notice: function() {
+        get_notice: function () {
             var that = this;
             axios.post('findAllNotice', {
                 //给服务器的参数
@@ -137,7 +148,7 @@ var vm = new Vue({
                 headers: {
                     token: that.token
                 }
-            }).then(function(res) {
+            }).then(function (res) {
                 //将获取到的数据存入数组
                 for (var i = 0; i < 8; i++) {
                     that.notice = res.data;
@@ -146,7 +157,7 @@ var vm = new Vue({
         },
 
         // 展示详情
-        show_detail: function() {
+        show_detail: function () {
             var flag = true;
             if (flag === true) {
                 this.detail = 'detail_show';
