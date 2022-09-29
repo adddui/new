@@ -27,39 +27,42 @@ public class OrganController {
 
     @PostMapping(value = "addOrgan")
     @ApiOperation("新增Organ数据")
-        //新增数据
+    // 新增数据
     int add(Organ organ) {
         return organDaoService.add(organ);
     }
 
     @PostMapping(value = "deleteOrgan")
     @ApiOperation("删除Organ数据")
-        //删除数据
+    // 删除数据
     int delete(int id) {
         return organDaoService.delete(id);
     }
 
     @PostMapping(value = "findOrganById")
     @ApiOperation("根据id查找Organ")
-        //根据id查找
-    Organ findUserById(@RequestBody HashMap <String, String> map) {
+    // 根据id查找
+    Organ findUserById(@RequestBody HashMap<String, String> map) {
+        // 找不到的时候加一句这个，这句是郑加的
+        if (map.get("id") == null) {
+            return null;
+        }
         int id = Integer.parseInt(map.get("id"));
-        System.out.println("Organ_uid: "+id);
-
+        System.out.println("Organ_uid: " + id);
         return organDaoService.findOrganById(id);
     }
 
     @PostMapping(value = "findOrganByUid")
     @ApiOperation("根据uid查找Organ")
-        //根据id查找
-    Organ findOrganByUid(@RequestBody HashMap <String, String> map) {
+    // 根据id查找
+    Organ findOrganByUid(@RequestBody HashMap<String, String> map) {
         int uid = Integer.parseInt(map.get("uid"));
         return organDaoService.findOrganByUid(uid);
     }
 
     @PostMapping(value = "updateOrgan")
     @ApiOperation("更新数据Organ")
-        //更新数据
+    // 更新数据
     int update(Organ organ) {
         return organDaoService.update(organ);
     }
