@@ -1,0 +1,773 @@
+/* 先将页面初始化 */
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/bird.jpg");
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed;
+    background-size: cover;
+    -ms-overflow-style: none;
+}
+
+
+/* 顶部系统名称 */
+
+.title-box {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    background-color: #0997f7;
+    color: white;
+}
+
+.title {
+    margin: 0 auto;
+    line-height: 50px;
+}
+
+
+/* 菜单栏 */
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    min-width: 50%;
+    width: 350px;
+    /* background-color: white; */
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 80px;
+    /* 盒子阴影 */
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    /* 设置模糊 */
+    backdrop-filter: blur(50px);
+}
+
+.menu>ul {
+    display: flex;
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+}
+
+.menu>ul>li {
+    margin: 0;
+    padding: 0;
+    float: right;
+    width: 10%;
+    line-height: 30px;
+    min-width: 80px;
+    color: white;
+    text-align: center;
+    list-style: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.shouye {
+    color: blue;
+}
+
+li:hover {
+    /* background-color: #0998f7d1; */
+    border-top: 2px solid transparent;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid skyblue;
+}
+
+li:focus {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:active {
+    color: red;
+}
+
+a:focus {
+    color: blue;
+}
+
+
+/* 下方内容框 */
+
+.base-info-box {
+    margin: 0;
+    display: flex;
+    /* position: fixed; */
+    /* bottom: 0; */
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sub-title {
+    min-width: 70%;
+    height: 40px;
+    border-radius: 30px;
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(50px);
+    line-height: 40px;
+    font-weight: bold;
+}
+
+/* 主内容框 */
+.main-info {
+    width: 70%;
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 70%;
+    max-width: 1800px;
+    min-height: 700px;
+    border-radius: 5px;
+    margin-top: 30px;
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(50px);
+    flex-wrap: wrap;
+}
+
+
+/* 健康码和核酸检测结果这一块 */
+
+.main-info-result-box {
+    min-width: 40%;
+    max-width: 700px;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: 0.5s;
+    /* background-color: white; */
+}
+
+
+/* 公告 */
+
+.main-info-notice-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 40%;
+    max-width: 700px;
+    flex-wrap: wrap;
+    min-width: 40%;
+    max-width: 700px;
+    margin-bottom: 20px;
+
+}
+
+.code {
+    max-width: 270px;
+    max-height: 270px;
+}
+
+.main-info-notice-box-1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 40%;
+    max-width: 700px;
+    flex-wrap: wrap;
+    max-height: 600px;
+}
+
+.main-info-notice-box-1>ul {
+    display: flex;
+    padding: 0;
+    min-width: 200px;
+    width: 450px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.main-info-notice-box-1>ul>li {
+    list-style: none;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+}
+
+.main-info-notice-box-1>ul>li:hover {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    cursor: default;
+}
+
+.menu_title {
+    margin: 0;
+}
+
+.menu_title>h2 {
+    margin: 0;
+}
+
+.detail_title {
+    text-align: left;
+    padding: 0;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.detail_title_span {
+    color: rgb(93, 74, 74);
+    font-size: 10px;
+}
+
+.detail_content {
+
+    text-align: left;
+    padding-left: 20px;
+}
+
+.detail_content>p {
+    width: 400px;
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+
+.return_button {
+    width: 60px;
+    height: 30px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+}
+
+.notice_detail_box {
+    border: none;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: transparent;
+    box-shadow: 7px 8px 11px rgb(0 0 0 / 50%);
+    transition: 0.1s;
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 40px;
+}
+
+
+/* 核酸结果 */
+
+.result {
+    min-width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    transition: all 0.3s ease-in-out;
+}
+
+.hesuan {
+    width: 270px;
+    height: 80px;
+    background-color: #0997f7;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    transition: 0.3s all ease-in-out;
+}
+
+
+/* 旅居史 */
+
+.history {
+    min-width: 270px;
+    height: 80px;
+    background-color: #0997f7;
+    border-radius: 5px;
+    color: white;
+    text-align: center;
+    line-height: 80px;
+    transition: 0.3s all ease-in-out;
+}
+
+
+/* 姓名和身份证框 */
+
+.info-box {
+    min-width: 30%;
+    width: 500px;
+    height: 80px;
+    background-color: #0997f7;
+    color: white;
+    border-radius: 5px;
+}
+
+.info-box>h2 {
+    margin: 10px 0 10px 20px
+}
+
+.info-box>span {
+    margin-left: 20px;
+    margin-top: 0;
+    color: yellow;
+}
+
+/* 设置鼠标经过的效果 */
+.hesuan:hover,
+.history:hover,
+.info-box:hover {
+    border: none;
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    transition: 0.1s;
+    cursor: pointer;
+}
+
+.main-info-notice-box>ul {
+    display: flex;
+    padding: 0;
+    min-width: 200px;
+    width: 450px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+}
+
+
+
+.main-info-notice-box>ul>li {
+    list-style: none;
+    margin: 0 auto;
+    height: 80px;
+    width: 100%;
+    background-color: #0997f7;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    line-height: 80px;
+}
+
+
+.main-info-notice-box>ul>li:hover {
+    border: none;
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    transition: 0.1s;
+}
+
+.notice-title {
+    border: none;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    transition: 0.1s;
+    color: white;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 40px;
+}
+
+.more-button {
+    width: 80px;
+    height: 40px;
+    background-color: white;
+    color: blue;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin: 10px 100px 10px 100px;
+}
+
+.more-button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+/* 接下来是社区论坛页面的 */
+
+.post-button-box {
+    /* margin-top: 5px; */
+    height: 80px;
+    width: 80%;
+    border-bottom: 2px dashed #0997f7;
+    line-height: 100px;
+}
+
+.post-button {
+    width: 80px;
+    height: 40px;
+    background-color: rgb(66, 236, 66);
+    border: none;
+    color: white;
+    border-radius: 5px;
+}
+
+.post-button:hover {
+    background-color: rgba(66, 236, 66, 0.8);
+    cursor: pointer;
+}
+
+.post-box {
+    width: 70%;
+    height: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-width: 70%;
+    max-width: 1800px;
+    min-height: 700px;
+    border-radius: 5px;
+    margin-top: 10px;
+    box-shadow: 7px 8px 11px rgb(0 0 0 / 50%);
+    backdrop-filter: blur(50px);
+    flex-wrap: wrap;
+}
+
+.post-box>ul {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-width: 40%;
+    width: 70%;
+    max-height: 600px;
+    overflow-y: hidden;
+}
+
+.post-box>ul:hover {
+    overflow-y: scroll;
+}
+
+.post-box>ul>li {
+    list-style: none;
+    margin: 0 auto;
+    /* flex-direction: row; */
+    height: 80px;
+    width: 400px;
+    background-color: #0997f7;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    line-height: 80px;
+}
+
+.post-box>ul>li:hover {
+    border: none;
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    transition: 0.1s;
+}
+
+
+/* 先隐藏原滚动条 */
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* hover时显色 */
+
+.container:hover ::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+/* 设置滚动条的样式 */
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+/* 滚动槽 */
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+
+/* 滚动条滑块 */
+
+
+/* 默认时隐藏*/
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    background: transparent;
+}
+
+
+/* 弹出窗口 */
+
+.add-post-box {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 40%;
+    max-height: 600px;
+    overflow: auto;
+    border-radius: 5px;
+    box-shadow: 7px 8px 11px rgb(0 0 0 / 50%);
+    backdrop-filter: blur(50px);
+}
+
+.add-post-box>ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 0;
+}
+
+.add-post-box>ul>li {
+    width: 400px;
+    list-style: none;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+}
+
+.add-post-box>ul>li:hover {
+    border: none;
+}
+
+
+/* 帖子标题输入框 */
+
+.post-title {
+    height: 40px;
+    border: none;
+    /* height: 40px; */
+    /* width: 300px; */
+    padding: 0;
+    color: white;
+    font-size: 17px;
+    background-color: transparent;
+    /* border: none; */
+    border-bottom: 2px solid skyblue;
+    outline: none;
+    padding-left: 20px;
+    border-radius: 8px;
+}
+
+.post-title::placeholder {
+    color: white;
+}
+
+.post-title:hover {
+    border-bottom: 2px solid blue;
+}
+
+.post-title:focus {
+    border-bottom: 2px solid blue;
+    border-left: 2px solid blue;
+}
+
+
+/* 帖子内容输入框 */
+
+.post-content {
+    border: none;
+    padding-top: 10px;
+    color: white;
+    font-size: 17px;
+    background-color: transparent;
+    border-bottom: 2px solid skyblue;
+    outline: none;
+    padding-left: 20px;
+    border-radius: 8px;
+}
+
+.post-content:focus {
+    border-bottom: 2px solid blue;
+    border-left: 2px solid blue;
+}
+
+.post-content::placeholder {
+    color: white
+}
+
+strong {
+    font-size: 18px;
+    margin: 5px 150px 5px 150px;
+    /* padding: 0 50px 0 50px; */
+}
+
+.edit {
+    font-size: 18px;
+    width: 90%;
+}
+
+.post-button-box-1 {
+    border: none;
+    margin: 0;
+    padding: 0;
+    word-spacing: 30px;
+}
+
+.post-button-box-1>input {
+    width: 60px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+}
+
+.post-button-comfirm {
+    background-color: #42ec42;
+    color: white;
+}
+
+.post-button-cancel {
+    background-color: red;
+    color: white;
+}
+
+.post-button-box-1:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.post-button-box-1>input:hover {
+    border: none;
+    cursor: pointer;
+}
+
+
+/* 核酸详情 */
+
+#history_info,
+#hesuan_check_info {
+    min-width: 40%;
+    max-width: 700px;
+    height: 600px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    color: white;
+    overflow-y: hidden;
+    /* background-color: white;*/
+}
+
+#history_info:hover,
+#hesuan_check_info:hover {
+    overflow-y: auto;
+}
+
+#history_info>table,
+#hesuan_check_info>table {
+    text-align: center;
+    /* border: 1; */
+    border: 1px solid #0997f7;
+    width: 600px;
+    border-collapse: collapse;
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+#history_info>table>tr>td,
+#hesuan_check_info>table>tr>td {
+    border: 1px solid #0997f7;
+    border-radius: 5px;
+}
+
+.table_header {
+    background-color: rgba(3, 151, 243, 0.8);
+}
+
+.return {
+    width: 70px;
+    height: 30px;
+    margin: 10px 150px 10px 150px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0997f7;
+    color: white;
+}
+
+.notice_info {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.notice_info_content>h4 {
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+}
+
+.notice_info>p {
+    width: 100px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    color: #42ec42;
+}
+
+.tishi {
+    color: white;
+    text-align: center;
+}
+
+.tishi>span {
+    font-weight: bold;
+    font-size: large;
+    color: blue;
+    cursor: pointer;
+}
+
+.tishi>span:hover {
+    color: deeppink;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/md5.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div class="login" id="login">
+        <div class="login-box">
+            <ul>
+                <li>
+                    <h2 class="title">欢迎使用社区疫情防控系统</h2>
+                </li>
+                <li><input type="text" class="login-username" id="username" placeholder="请输入账号" v-model="account"></li>
+                <li><input type="password" class="login-password" id="password" placeholder="请输入密码"
+                        v-model="origin_password"></li>
+                <li class="validate-code-box">
+                    <input type="text" class="login-code" id="validate_code" placeholder="请输入验证码"
+                        v-model="validateCode">
+                    <img :src="src" alt="验证码" class="code-img" @click="refresh" id="captcha">
+                </li>
+                <li><input type="button" class="login-button" v-model="login_status" @click="login"> </li>
+                <li>没有帐户？<a href="./register.html">点击注册</a></li>
+            </ul>
+        </div>
+    </div>
+    <script type="module" src="./js/login.js"></script>
+</body>
+
+</html>
