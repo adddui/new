@@ -1,0 +1,21 @@
+.table_header {
+    background-color: rgba(3, 151, 243, 0.8);
+}
+
+table {
+    text-align: center;
+    /* border: 1; */
+    border: 1px solid #0997f7;
+    width: 600px;
+    border-collapse: collapse;
+    line-height: 40px;
+    border-radius: 5px;
+    color: black;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #0997f7;
+    border-radius: 5px;
+    text-align: center;
+}
