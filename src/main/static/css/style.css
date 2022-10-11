@@ -7799,6 +7799,7 @@ body.skin-3 {
   background-color: transparent;
   color: white;
   backdrop-filter: blur(50px);
+  border-bottom:2px solid grey;
 }
 
 .title {
