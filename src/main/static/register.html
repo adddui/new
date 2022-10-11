@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link rel="shortcut icon" href="./img/register.png">
+    <script src="./js/md5.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+    <div class="login" id="login">
+        <div class="register-box">
+            <ul>
+                <li>
+                    <h2 class="title">注册系统账户</h2><br>
+                </li>
+                <li><input type="text" class="register-username" id="username" placeholder="请输入账户" v-model="account">
+                </li>
+                <li><input type="password" class="register-password" id="password" placeholder="请输入密码"
+                        v-model="origin_password"></li>
+                <li><input type="password" class="register-password" id="confirm-password" placeholder="请确认密码"
+                        v-model="comfirm_password"></li>
+                <li><input type="text" class="register-nickname" id="nick-name" placeholder="请输入昵称" v-model="nick_name">
+                </li>
+                <li v-show="login_show"><input type="button" class="login-button" v-model="register_status"
+                        @click="register"></li>
+                <li v-show="!login_show">
+                    <a href="login.html">
+                        <input type="button" class="login-button" v-model="returnLogin" @click="register">
+                    </a>
+                </li>
+                <li>已有帐户？<a href="./login.html">点击登录</a></li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/register.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/后台管理.png">
+    <link rel="stylesheet" href="./css/bs.css">
+    <title>后台管理</title>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="title-box" id="title">
+            <span class="title">社区疫情防控系统</span>
+            <span class="sub_title" @click="logout()">退出登录</span>
+        </div>
+        <div id="wrapper">
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="forum.html">社区论坛</a></li>
+                    <li><a href="person_mainpage.html">个人中心</a></li>
+                    <li style="background-color: rgba(3, 151, 243, 0.8)">
+                        <a href=" #" style="color: white;">后台管理</a>
+                    </li>
+                    <li><a href="tem-report.html">体温上报</a></li>
+                    <li><a href="out_report.html">外出上报</a></li>
+                    <li><a href="return_report.html">返乡上报</a></li>
+                </ul>
+            </div>
+            <div id="page-wrapper" class="gray-bg dashbard-1">
+
+                <div class="table_list">
+                    <!-- 内容 -->
+                    <table>
+                        <caption>
+                            <h2>返乡报备</h2>
+                        </caption>
+                        <tr class="table_header">
+                            <th>出发时间</th>
+                            <th>到达时间</th>
+                            <th>上报时间</th>
+                            <th>出发地</th>
+                            <th>目的地</th>
+                            <th>体温</th>
+                        </tr>
+                        <tr>
+                            <td id="st1">{{ return_mess.startTime }}</td>
+                            <td>{{ return_mess.endTime }}</td>
+                            <td>{{ return_mess.buildTime }}</td>
+                            <td>{{ return_mess.pod }}</td>
+                            <td>{{ return_mess.destination }}</td>
+                            <td>{{ return_mess.temp }}</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <caption>
+                            <h2>外出报备</h2>
+                        </caption>
+                        <tr class="table_header">
+                            <th>出发时间</th>
+                            <th>到达时间</th>
+                            <th>上报时间</th>
+                            <th>出发地</th>
+                            <th>目的地</th>
+                            <th>体温</th>
+                        </tr>
+                        <tr>
+                            <td id="st2">{{ out_mess.startTime }}</td>
+                            <td>{{ out_mess.endTime }}</td>
+                            <td>{{ out_mess.buildTime }}</td>
+                            <td>{{ out_mess.pod }}</td>
+                            <td>{{ out_mess.destination }}</td>
+                            <td>{{ out_mess.temp }}</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <caption>
+                            <h2>体温上报</h2>
+                        </caption>
+                        <tr class="table_header">
+                            <th>上报时间</th>
+                            <th>体温</th>
+                        </tr>
+                        <tr>
+                            <td id="st3">{{ temp_mess.postTime }}</td>
+                            <td>{{ temp_mess.temp }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/bs_management.js"></script>
+</body>
+
+</html>

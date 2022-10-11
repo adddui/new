@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="./js/md5.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <script src="./js/vue.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/个人中心.png">
+    <title>个人中心</title>
+</head>
+
+<body>
+    <div class="title-box" id="title">
+        <span class="title">社区疫情防控系统</span>
+        <span class="sub_title" @click="logout()">退出登录</span>
+    </div>
+    <div id="wrapper">
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="forum.html">社区论坛</a></li>
+                <li style="background-color: rgba(3, 151, 243, 0.8)">
+                    <a href=" #" style="color: white;">个人中心</a>
+                </li>
+                <li><a href="bs_management.html">后台管理</a></li>
+                <li><a href="tem-report.html">体温上报</a></li>
+                <li><a href="out_report.html">外出上报</a></li>
+                <li><a href="return_report.html">返乡上报</a></li>
+            </ul>
+        </div>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1" style="text-align: center">
+
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-content" onload="get_mes">
+                    <h2>个人信息</h2>
+                    <form class="form-horizontal m-t" id="commentForm" style="height: 600px">
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">昵称</label>
+                            <div class="col-sm-8">
+                                <input id="name" name="comment" class="form-control" v-model="personalmess.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">密码</label>
+                            <div class="col-sm-8">
+                                <input type="password" id="password" name="comment" class="form-control"
+                                    v-model="personalmess.password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">确认密码</label>
+                            <div class="col-sm-8">
+                                <input type="password" id="confirm_password" name="comment" class="form-control"
+                                    v-model="confirm_password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">性别</label>
+                            <div class="col-sm-8">
+                                <input id="gender" name="comment" class="form-control" v-model="personalmess.gender">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">地址</label>
+                            <div class="col-sm-8">
+                                <input id="address" name="comment" class="form-control" v-model="personalmess.address">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证号</label>
+                            <div class="col-sm-8">
+                                <input id="idcard" name="comment" class="form-control" v-model="personalmess.idcard">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">电话号码</label>
+                            <div class="col-sm-8">
+                                <input id="phone" name="comment" class="form-control" v-model="personalmess.phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="button" @click="fix()">提交修改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/person_mainpage.js"></script>
+
+</body>

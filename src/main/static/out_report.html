@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <script src="./js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css?v=2.2.0" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/外出上报.png">
+    <title>外出上报</title>
+
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="title-box" id="title">
+            <span class="title">社区疫情防控系统</span>
+            <span class="sub_title" @click="logout()">退出登录</span>
+        </div>
+        <div id="wrapper">
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="forum.html">社区论坛</a></li>
+                    <li><a href="person_mainpage.html">个人中心</a></li>
+                    <li><a href="bs_management.html">后台管理</a></li>
+                    <li><a href="tem-report.html">体温上报</a></li>
+                    <li style="background-color: rgba(3, 151, 243, 0.8)"><a href="#">外出上报</a></li>
+                    <li><a href="return_report.html">返乡上报</a></li>
+                </ul>
+            </div>
+
+            <div id="page-wrapper" class="gray-bg dashbard-1" style="text-align: center">
+
+                <div class="ibox float-e-margins">
+
+                    <div class="ibox-content">
+                        <h2>外出报备</h2>
+                        <form class="form-horizontal m-t" id="commentForm" style="height: 500px">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">出发地</label>
+                                <div class="col-sm-8">
+                                    <input id="pod" name="name" minlength="2" type="text" class="form-control"
+                                        v-model="pod">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">目的地</label>
+                                <div class="col-sm-8">
+                                    <input id="destination" name="name" minlength="2" type="text" class="form-control"
+                                        v-model="destination">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">出发时间</label>
+                                <div class="col-sm-8">
+                                    <input id="startTime" type="date" class="form-control" name="email"
+                                        v-model="startTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">预计到达时间</label>
+                                <div class="col-sm-8">
+                                    <input id="endTime" type="date" class="form-control" name="email" v-model="endTime">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">体温</label>
+                                <div class="col-sm-8">
+                                    <input id="temp" name="comment" class="form-control" v-model="temp">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-3">
+                                    <button class="btn btn-primary" type="button" @click="add_out_mess()">提交</button>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/out_report.js"></script>
+</body>
