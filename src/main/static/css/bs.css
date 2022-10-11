@@ -1,0 +1,52 @@
+.table_header {
+    background-color: rgba(3, 151, 243, 0.8);
+    text-align: center;
+}
+
+caption {
+    text-align: center;
+}
+
+table {
+    margin: 0 auto;
+    margin-bottom: 40px;
+    text-align: center;
+    border: 1px solid #0997f7;
+    width: 800px;
+    min-width: 400px;
+    max-width: 800px;
+    border-collapse: collapse;
+    line-height: 50px;
+    border-radius: 5px;
+    color: black;
+}
+
+th {
+    color: white;
+    text-align: center;
+}
+
+td {
+    border: 1px solid #0997f7;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 15px;
+    color: white;
+}
+
+.table_list {
+    margin: 0 auto;
+    margin-top: 50px;
+    min-height: 700px;
+    min-width: 400px;
+    max-width: 1000px;
+    border-radius: 5px;
+    /* 盒子阴影 */
+    box-shadow: 7px 8px 11px rgba(0, 0, 0, 0.5);
+    /* 设置模糊 */
+    backdrop-filter: blur(50px);
+}
+
+.label_list {
+    color: white;
+}
